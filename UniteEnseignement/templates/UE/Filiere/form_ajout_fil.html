@@ -1,0 +1,137 @@
+{% extends "UE/RespoFiliere/index2.html" %}
+
+{% block content %}
+{% load static %}
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+     
+      form{
+        width: 500px;
+        margin-left: 55%;
+        margin-top: -2%;
+
+      }
+      label{
+        margin-top: 5%;
+        margin-left: 10%;
+      }
+      input, select{
+        margin-left: 10%;
+        width: 25px;
+        
+      }
+      button{
+        margin-left: 900px;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      
+    </style>
+
+    
+   
+  <body>
+<div class ="container">
+  <br>
+  
+  {% for message in messages %}
+  <p class="alert alert-success mt-3"> {{ message }}</p>
+  {% endfor %}
+  <br>
+  {% if fil %}
+   
+  <br>
+  <div class="col-12">
+    <form method="POST" class="post-form" action="{% url 'updateFil' fil.id %}">
+      {% csrf_token %}
+  <div class="row">
+    <div class="form-group col-md-10">
+      <h3><label for="nomFiliere" style="color:white"><b>Nom</b></label></h3>
+      <input type="text" class="form-control"  id="nomFiliere"value="{{niv.nomFiliere }}" name ="nomFiliere" placeholder="Saisir l'EC">
+    </div><br>
+      <div class="form-group col-md-10">
+        <label for="cycle" style="color:white"><b>Cycle</b></label>
+        <select class="custom-select d-block w-100" id="cycle"  name='cycle' required>
+            <option><b>---</b></option>
+          {% for cyc in cycs%}
+          <option value="{{cyc.id}}"><b>{{cyc.nom}}{{cyc.niveau}}</b></option>
+          {% endfor %}
+        </select>
+      </div>
+     <br>
+     <br>
+    <table>
+                        <tr></tr>
+                            <tr>
+                            <br><td>
+                                    <div class="col-md-2 col-md-offset-4">
+                                        <button type="submit" class="btn btn-success"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Modifier
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+  
+  </div>
+</form>
+  </div>
+  {% else %}
+  <br>
+  <div class="col-12">
+    <div class="d-flex flex-wrap align-items-right justify-content-center justify-content-lg-start">
+    <form method="POST" class="post-form" action="{% url 'ajoutFil'%}">
+      {% csrf_token %}
+  <div class="row">
+    <div class="form-group col-md-10">
+      <label for="nomFiliere" style="color:white"><b>Nom</b></label>
+      <input type="text" class="form-control"  id="nomFiliere" name ="nomFiliere" placeholder="Saisir le nom de la filière">
+    </div>
+</div><br>
+<div class="form-group col-md-10">
+  <label for="cycle" style="color:white"><b>Cycle</b></label>
+  <select class="custom-select d-block w-100" id="cycle" multiple="multiple" name='cycle' required>
+    <option ><b>---</b></option>
+    {% for cyc in cycs%}
+    <option value="{{cyc.id}}"><b>{{cyc.nom}}{{cyc.niveau}}</b></option>
+    {% endfor %}
+  </select>
+</div> <br>
+  </div><br>
+  
+    <table>
+                            <tr>
+                            <br><td>
+                                    <div class="col-md-2 col-md-offset-4" >
+                                        <button type="submit" class="btn btn-success"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Enregistrer
+                                        </button>
+                                    </div>
+                                </td>
+                                
+                              
+                            </tr>
+                        </table>
+                        
+{% endif %}                       
+</form>
+  </div>
+</div>
+</div>
+<br>  
+  </div>
+</div>
+    {%endblock%}

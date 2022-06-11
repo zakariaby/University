@@ -1,0 +1,253 @@
+{% extends "../../UE/RespoFiliere/index1.html" %}
+
+{% block content %}
+<style>
+  input,select{
+    margin-left: 60px;
+    width: 25px
+  }
+  label{
+    margin-left: 60px;
+    color:white;
+  }
+  button{
+        margin-left: 100px;
+      }
+
+  input{
+        color: var(--bs-yellow);
+        border-bottom: 1px solid transparent;
+        transition:padding-bottom .4s ease-in-out, border-color .3s ease;
+      }
+</style>
+<br>
+<br>
+<div class ="container">
+  
+  {% if ens %}
+  <div class="col-12">
+    <form method="POST" class="post-form" action="IupdateEns">
+      <br><br>
+      {% csrf_token %}
+      <div class="row">
+        <div class="form-group col-md-5">
+          <label for="nom" style="color:white"><b>Nom</b></label>
+          <input type="text" class="form-control" id="nom" value="{{ens.nom}}" placeholder="Saisissez le nom" required>
+        </div>
+        <div class="form-group col-md-5">
+          <label for="prenom" style="color:white"><b>Prénom</b></label>
+          <input type="text" class="form-control" id="prenom" value="{{ens.prenom}}" placeholder="Saisissez le prénom" required>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="form-group col-md-5">
+          <label for="numTel" style="color:white"><b>Numéro de téléphone</b></label>
+          <input type="text" class="form-control" id="numTel" value="{{ens.numTel}}" placeholder="Saisir le numéro de téléphone " required>
+        </div>
+      <div class="form-group col-md-5">
+        <label for="adresse" style="color:white"><b>Adresse</b></label>
+        <input type="text" class="form-control" id="adresse" value="{{ens.adresse}}" placeholder="Saisir l'adresse de l'enseignant " required>
+      </div></div>
+    <br>
+      <div class="row">
+      <div class="form-group col-md-5">
+        <label for="email" style="color:white"><b>Email</b></label>
+        <input type="email" class="form-control" id="email" value="{{ens.email}}" placeholder="Saisir l'email" required>
+      </div>
+      <div class="form-group col-md-5"><br>
+        <table>
+          <tr>
+            <td>
+              <label for="password" style="color:white"><b>Mot de passe</b></label>
+              <input type="password" class="form-control" id="password" placeholder="" name="password" required>
+            </td>
+            <td>
+              <label for="password" style="color:white"><b>Vérification mot de passe</b></label>
+              <input type="password" class="form-control" id="password" placeholder="" name="mpd" required>
+            </td>
+          </tr>
+        </table>
+    </div><br>
+      </div><br>
+      <div class="row">
+      <div class="form-group col-md-5">
+        <label for="dateEntree" style="color:white"><b>Date d'entrée</b></label>
+        <input type="Date" class="form-control" id="dateEntree" value="{{ens.dateEntree}}" placeholder="Donner la date d'entrée de l'enseignant" required>
+      </div>
+      <div class="form-group col-md-5">
+        <label for="filiere" style="color:white"><b>Filière</b></label>
+        <select class="custom-select d-block w-100" id="filiere" multiple='true' name='filiere' required>
+          <option value="{{ens.fil.id}}" ><b>{{ens.fil.nomFiliere}}</b></option>
+          {% for fil in fils%}
+          <option value="{{fil.id}}"><b>{{fil.nomFiliere}}</b></option>
+          {% endfor %}
+        </select>
+        <br>
+      </div>
+      </div>  
+                                        <button type="submit" class="btn btn-dark"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Modifier
+                                        </button>
+                 
+                                        <br><br>
+    </div>
+    <br> <br>                 
+</form>
+  </div>
+
+    
+  </div>
+  
+  {% else %}
+    {% if mot %}
+    <div class="col-12">
+      <script>
+        alert("mot de passe incorrect."<br>"Veuillez svp remplir à nouveau les champs."<br>"Merci!")
+      </script>
+      <form method="POST" class="post-form" action="IajoutEns">
+        <br><br>
+        {% csrf_token %}
+    <div class="row">
+      <div class="form-group col-md-5">
+        <label for="nom" style="color:white"><b>Nom</b></label>
+        <input type="text" class="form-control" id="nom" placeholder="Saisissez le nom" name="nom" required>
+      </div>
+      <div class="form-group col-md-5">
+        <label for="prenom" style="color:white"><b>Prénom</b></label>
+        <input type="text" class="form-control" id="prenom" placeholder="Saisissez le prénom" name="prenom" required>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="form-group col-md-5">
+        <label for="numTel" style="color:white"><b>Numéro de téléphone</b></label>
+        <input type="number" class="form-control" id="numTel" placeholder="Saisir le numéro de téléphone " name="numTel" required>
+      </div>
+    <div class="form-group col-md-5">
+      <label for="adresse" style="color:white"><b>Adresse</b></label>
+      <input type="text" class="form-control" id="adresse" placeholder="Saisir l'adresse de l'enseignant " name="adresse" required>
+    </div></div>
+  <br>
+    <div class="row">
+    <div class="form-group col-md-5">
+      <label for="email" style="color:white"><b>Email</b></label>
+      <input type="email" class="form-control" id="email" placeholder="Saisir l'email" name="email" required>
+    </div>
+    <div class="form-group col-md-5">
+      <table>
+        <tr>
+          <td>
+            <label for="password" style="color:white"><b>Mot de passe</b></label>
+            <input type="password" class="form-control" id="password" placeholder="" name="password" required>
+          </td>
+          <td>
+            <label for="password" style="color:white"><b>Vérifier mot de passe</b></label>
+            <input type="password" class="form-control" id="password" placeholder="" name="passe" required>
+          </td>
+        </tr>
+      </table>
+  </div><br>
+    </div><br>
+    <div class="row"><br>
+    <div class="form-group col-md-5">
+      <label for="filiere" style="color:white"><b>Filière</b></label>
+      <!--<select class="custom-select d-block w-100" id="filiere" multiple='true' name='filiere' required>
+        <option ><b>---</b></option>
+        {% for fil in fils%}
+        <option value=" "><b>{{fil.nomFiliere}}</b></option>
+        {% endfor %}
+      </select>-->
+      <br>
+    </div>
+    </div>
+    
+    
+      
+                                          <button type="submit" class="btn btn-dark"> <span
+                                          class="fa fa-send" style="color:#4f4;"></span> 
+                                              Ajouter
+                                          </button>
+                   
+                                          <br><br>
+      </div>
+      <br> <br>                 
+  </form>
+    </div>  
+    {% else %}
+  <div class="col-12">
+    <form method="POST" class="post-form" action="IajoutEns">
+      <br><br>
+      {% csrf_token %}
+  <div class="row">
+    <div class="form-group col-md-5">
+      <label for="nom" style="color:white"><b>Nom</b></label>
+      <input type="text" class="form-control" id="nom" placeholder="Saisissez le nom" name="nom" required>
+    </div>
+    <div class="form-group col-md-5">
+      <label for="prenom" style="color:white"><b>Prénom</b></label>
+      <input type="text" class="form-control" id="prenom" placeholder="Saisissez le prénom" name="prenom" required>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="form-group col-md-5">
+      <label for="numTel" style="color:white"><b>Numéro de téléphone</b></label>
+      <input type="number" class="form-control" id="numTel" placeholder="Saisir le numéro de téléphone " name="numTel" required>
+    </div>
+  <div class="form-group col-md-5">
+    <label for="adresse" style="color:white"><b>Adresse</b></label>
+    <input type="text" class="form-control" id="adresse" placeholder="Saisir l'adresse de l'enseignant " name="adresse" required>
+  </div></div>
+<br>
+  <div class="row">
+  <div class="form-group col-md-5">
+    <label for="email" style="color:white"><b>Email</b></label>
+    <input type="email" class="form-control" id="email" placeholder="Saisir l'email" name="email" required>
+  </div>
+  <div class="form-group col-md-5">
+    <table>
+      <tr>
+        <td>
+          <label for="password" style="color:white"><b>Mot de passe</b></label>
+          <input type="password" class="form-control" id="password" placeholder="" name="password" required>
+        </td>
+        <td>
+          <label for="password" style="color:white"><b>Vérifier mot de passe</b></label>
+          <input type="password" class="form-control" id="password" placeholder="" name="passe" required>
+        </td>
+      </tr>
+    </table>
+</div><br>
+  </div><br>
+  <div class="row"><br>
+  <div class="form-group col-md-5">
+    <label for="filiere" style="color:white"><b>Filière</b></label>
+    <!--<select class="custom-select d-block w-100" id="filiere" multiple='true' name='filiere' required>
+      <option ><b>---</b></option>
+      {% for fil in fils%}
+      <option value=" "><b>{{fil.nomFiliere}}</b></option>
+      {% endfor %}
+    </select>-->
+    <br>
+  </div>
+  </div>
+  
+  
+    
+                                        <button type="submit" class="btn btn-dark"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Ajouter
+                                        </button>
+                 
+                                        <br><br>
+    </div>
+    <br> <br>                 
+</form>
+  </div>
+
+    
+  </div>
+  {%endif%}
+  {%endif%}
+</div>
+
+    {%endblock%}

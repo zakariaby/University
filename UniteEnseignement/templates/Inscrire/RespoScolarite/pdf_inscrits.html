@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Plateforme Universitaire</title>
+
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<meta name="theme-color" content="#7952b3">
+
+
+    <style>
+      form {
+        background-color: rgb(87, 87, 80);
+        height:100%;
+        width:100%;
+      }
+    
+      img.logo{
+        width:75px;
+        height:75px;
+        border-radius: 50%;
+        margin-right:100px;
+        max-height : 100%;
+        max-width : 100%;
+          
+      }
+
+      body{
+        background-image:url("{% static 'img/resfi.jpg' %}") ;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height:100%;
+        width:100%;
+      }
+
+      .table-responsive{
+        background-color: white;
+      }
+    </style>
+
+    <link href="{% static 'css/headers.css' %}" rel="stylesheet">
+  </head>
+
+
+<body>
+<div class ="container">
+    <div class="row">
+<br>
+<br>
+<br>
+        <h3>Liste des étudiants inscrits</h3>
+        <div class="table-responsive" >
+        <table>
+        <tr>
+            </tr>
+            
+            <tr>
+            
+            <table class="table table-bordered table-condensed table-hover" > <br>
+            <tr>
+                <div class="cold-md-8">
+                    <form action="/search" method="GET">
+                        <div class="input-group">
+                          <td colspan='3'> <input type="search" name="nom" class="form-control"></td>
+                          <td>
+                            <span class="input-group-prepend">
+                                <button type='submit' class="btn btn-primary">Rechercher</button>
+                            </span>
+                          </td>
+                        </div>
+                    </form>
+                </div>
+                </tr>
+                <tr class="bg-info">
+                    <th style="color:#900C3F"><b>Code Permanent</b></th>
+                    <th style="color:#900C3F"><b>Nom</b></th>
+                    <th style="color:#900C3F"><b>Prénom</b></th>
+                    <th style="color:#900C3F"><b>Date de Naissance</b></th>
+                    <th style="color:#900C3F"><b>Lieu de Naissance</b></th>
+                </tr>
+                    {% for etudiant in etudiants %}
+                <tr>
+                    <td>{{etudiant.codePermanent}}</td>
+                    <td>{{etudiant.nom}}</td>
+                    <td>{{etudiant.prenom}}</td>
+                    <td>{{etudiant.dateNaiss}}</td>
+                    <td>{{etudiant.lieuNaiss}}</td>
+                    {%endfor%}
+                </tr>
+                
+                
+            </form>
+            </table>
+        </div>
+   </div>
+   <div>
+</div>
+</body>
+</html>

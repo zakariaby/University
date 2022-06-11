@@ -1,0 +1,110 @@
+{% extends "RespoFiliere/index.html" %}
+
+{% block content %}
+        <div class="table-responsive" align="center">
+        <table>
+        <tr>
+        <form method="POST">
+            <div class="py-6 text-left">
+            
+                <table class="col-md-12 order-md-2 mb-2"align="center">
+                <tr>
+                    <td>
+                        <table class="col-md-2 col-md-offset-2" >
+                            <tr><img class="d-block mx-auto mb-4" src="#" alt="" width="72" height="72" align="left"></tr>
+                            <tr><h6 align="left">devise</h6></tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table class="col-md-1">
+                            <tr><h6 align="right">Annee Scolaire:</h6></tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr></tr>
+                </table>
+                
+                <div class="col-md-12 order-md-2 mb-4">
+                    <H1 align="center"><b>Liste de la classe de  </b></H1>
+                </div>
+                
+            </div>
+            </form>
+            </tr>
+            
+            <tr>
+        <form method="POST">
+            <fieldset>
+            <legend> Liste des élèves </legend>
+            <table class="table table-bordered table-condensed table-hover" >
+            <tr>
+                <div class="cold-md-8">
+                    <form action="/search" method="GET">
+                        <div class="input-group">
+                          <td colspan='3'> <input type="search" name="nom" class="form-control"></td>
+                          <td>
+                            <span class="input-group-prepend">
+                                <button type='submit' class="btn btn-primary">Rechercher</button>
+                            </span>
+                          </td>
+                        </div>
+                    </form>
+                </div>
+                </tr>
+                <tr class="bg-info">
+                    <th>N°</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Date de Naissance</th>
+                    <th>Lieu de Naissance</th>
+                
+                    <th>Supprimer un élève</th>
+                    <th>Modification</th>
+                    
+                </tr>
+               <!--@foreach($eleves as $eleve)-->
+                <tr>
+                    <td><h4><b>#</b></h4></td>
+                    <td><h4><b>#</b></h4></td>
+                    <td><h4><b>#</b></h4></td>
+                    <td><h4><b>#</b></h4></td>
+                    <td><h4><b>#</b></h4></td>
+                    
+                    <td>
+                    <a class="btn btn-danger" href="#">Semestre 1</a>
+                    </td>
+                    <div class="form-group ">
+                    <td>    <a class="btn btn-primary" type="submit" href="#">Semestre 2</a> </td>
+                    </div>
+                    
+                    
+                </tr>
+                
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-primary" href='create'><span class="fa fa-bullhorn" style="color:#4f4;">
+                            </span> Ajouter </button>
+                    </td>
+                </div>
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-warning" href="#">Quitter</a>
+                    </td>            
+                </div> 
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-outline-success" href="#">Format Excel</a>
+                    </td>            
+                </div>
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-outline-primary" href="#">Format PDF</a>
+                    </td>            
+                </div>
+                </fieldset>
+            </table>
+            </form>
+            </tr>
+            </table>
+        </div>
+{% endblock %}  

@@ -1,0 +1,43 @@
+{% extends "UE/RespoFiliere/index2.html" %}
+
+{% block content %}
+{% load static %}
+
+<br>
+<br>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% for tc in tcs %}
+<table class="table">
+    <thead class="thead-warning">
+      <tr>
+        
+        <th scope="col">type Cour:  &nbsp {{tc.nomTypeCour}} </th>
+        <th scope="col">Volume Horaire: &nbsp {{tc.volumeHoraire}}</th>
+        <th scope="col">EC:&nbsp {{tc.ec.nomEc}}</th>
+      </tr> 
+     
+    </thead>
+    <tbody>    
+            <td>
+              <div class="col-md-2 col-md-offset-4">
+              <a href="{% url 'deleteTC' tc.id %}" type="submit" class="btn btn-dark"> <span
+              class="fa fa-send" style="color:#4f4;"></span> 
+                  Supprimer
+              </a>
+              </div>
+            </td>
+            <td>
+              <div class="col-md-2 col-md-offset-4">
+              <a href="{% url 'editTC' tc.id %}" type="submit" class="btn btn-info"> <span
+              class="fa fa-send" style="color:#4f4;">Modifier</span> 
+                  
+              </a>
+              </div>
+            </td>
+          </tr>
+          
+</tbody> 
+</table>
+
+   {% endfor %}
+ {%endblock%}

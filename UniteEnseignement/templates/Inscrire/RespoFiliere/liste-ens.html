@@ -1,0 +1,98 @@
+{% extends "../../UE/RespoFiliere/index1.html" %}
+
+{% block content %}
+<style>
+    form{
+        background-color: rgb(41, 36, 36);
+    }
+    b{
+        color:yellow;
+    }
+    td,th{
+        margin-left: 5px;
+    }
+</style>
+<br>
+<br>
+<br>
+        <div class="table">
+        <tr>
+            </tr>
+            
+            <tr>
+        <form method="POST">
+
+            <fieldset>
+            <br>
+            <div class="col-12">
+            <table class="table table-bordered  table-hover" > <br>
+            <tr>
+                <div class="cold-md-2">
+                    <form action="/search" method="GET">
+                        <div class="input-group">
+                            <div class="col-md-4">
+                           <input type="search" name="nom" class="form-control" style="margin-left: 30px;">
+                            </div>
+                            <span class="input-group-prepend">
+                                <button type='submit' class="btn btn-primary">Rechercher</button>
+                            </span>
+                          
+                        </div>
+                </div>
+                <br>
+                </tr>
+                <tr class="bg-info">
+                    <th style="color:#900C3F"><b>Nom</b></th>
+                    <th style="color:#900C3F"><b>Prénom</b></th>
+                    <th style="color:#900C3F"><b>Email</b></th>
+                    <th style="color:#900C3F"><b>Filière</b></th>
+                    <th style="color:#900C3F"><b>Modification</b></th>
+                    
+                </tr>
+                    {% for enseignant in enseignants %}
+                <tr>
+                    <td><b>{{enseignant.nom}}</b></td>
+                    <td><b>{{enseignant.prenom}}</b></td>
+                    <td><b>{{enseignant.email}}</b></td>
+                    <td><b>#</b></td>
+                    
+                    <div class="form-group cold-md-2 ">
+                    <td>    <a class="btn btn-primary" type="submit" href="{% url 'IupdateEns' enseignant.id %}">Modifier</a> </td>
+                    </div>
+                    
+                    {%endfor%}
+                </tr>
+                
+                <div class="form-group cold-md-2">
+                    <td>
+                        <a class="btn btn-primary" href="{% url 'IajoutEns'%}"><span class="fa fa-bullhorn" style="color:#4f4;">
+                            </span> Ajouter </button>
+                    </td>
+                </div>
+                <div class="form-group cold-md-2">
+                    <td>
+                        <a class="btn btn-warning" href="#">Quitter</a>
+                    </td>            
+                </div> 
+                <div class="form-group cold-md-2">
+                    <td>
+                        <a class="btn btn-outline-success" href="{% url 'export_excel' %}">Format Excel</a>
+                    </td>            
+                </div>
+                <div class="form-group cold-md-2">
+                    <td>
+                        <a class="btn btn-outline-primary" href="#">Format PDF</a>
+                    </td>            
+                </div>
+                <div class="form-group cold-md-2">
+                    <td>
+                        <a class="btn btn-outline-primary" href="#">Format </a>
+                    </td>            
+                </div>
+                </fieldset>
+            </table>
+            </form>
+            </tr>
+        </div>
+    </div>
+{% endblock %}  

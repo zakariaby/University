@@ -1,0 +1,91 @@
+{% extends "Enseignant/index.html" %}
+
+{% block content %}
+<div class ="container">
+    <div class="row">
+<br>
+<br>
+<br>
+        <div class="table-responsive" align="center">
+        <table>
+        <tr>
+            </tr>
+            
+            <tr>
+        <form method="POST">
+
+            <fieldset>
+                <br>
+                <br>
+                <br>
+                <br>
+            <legend> <h4 style="color:#900C3F">Liste des Etudiants de...</h4> </legend> 
+            <br>
+            
+            <table class="table table-bordered table-condensed table-hover" > <br>
+            <tr>
+                <div class="cold-md-8">
+                    <form action="/search" method="GET">
+                        <div class="input-group">
+                          <td colspan='3'> <input type="search" name="nom" class="form-control"></td>
+                          <td>
+                            <span class="input-group-prepend">
+                                <button type='submit' class="btn btn-primary">Rechercher</button>
+                            </span>
+                          </td>
+                        </div>
+                    </form>
+                </div>
+                </tr>
+                <tr class="bg-info">
+                    <th style="color:#900C3F"><b>Code Permanent</b></th>
+                    <th style="color:#900C3F"><b>Nom</b></th>
+                    <th style="color:#900C3F"><b>Prénom</b></th>
+                    <th style="color:#900C3F"><b>Date de Naissance</b></th>
+                    <th style="color:#900C3F"><b>Lieu de Naissance</b></th>
+                    <th style="color:#900C3F"><b>Note</b></th>
+                    
+                </tr>
+                    {% for etudiant in etudiants %}
+                <tr>
+                    <td>{{etudiant.codePermanent}}</td>
+                    <td>{{etudiant.nom}}</td>
+                    <td>{{etudiant.prenom}}</td>
+                    <td>{{etudiant.dateNaiss}}</td>
+                    <td>{{etudiant.lieuNaiss}}</td>
+                    <td>20</td>
+                    
+                    
+                    {%endfor%}
+                </tr>
+                
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-primary" href='create'><span class="fa fa-bullhorn" style="color:#4f4;">
+                            </span> Ajouter </button>
+                    </td>
+                </div>
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-warning" href="#">Quitter</a>
+                    </td>            
+                </div> 
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-outline-success" href="#">Format Excel</a>
+                    </td>            
+                </div>
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-outline-primary" href="#">Format PDF</a>
+                    </td>            
+                </div>
+                </fieldset>
+            </table>
+            </form>
+            </tr>
+            </table>
+        </div>
+   </div>
+   <div>
+{% endblock %}  

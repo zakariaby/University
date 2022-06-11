@@ -1,0 +1,62 @@
+
+{% extends "UE/RespoFiliere/index2.html" %}
+
+{% block content %}
+{% load static %}
+<style>
+  .row{background-color:#368DBA;
+    padding-left: 200px;
+    
+ 
+  }
+</style>
+<div class ="container-fluid">
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <table><tr>
+{% for cyc in cycs%}
+      {% if cyc.cycle.nom == licence %}
+    <td>
+      <div class="col-md-2">
+        <div class="jumbotron">
+          <a href="#">
+           <img
+            src="{% static 'img/licence3.png'%}"  
+            class="w-300 mt-2 p-2 h-100"
+            alt="..."
+          />
+          </a><br>
+          <div class="card-body" style="height: 250px;">
+            <b><h5 class="card-title"><a class="btn btn-warning" href="#" style="color:#900C3F">{{cyc.cycle.nom}}{{cyc.niveau.numNiveau}}</a></h5></b>
+          </div>
+        </div>
+      </div>
+    </td>
+      {% else %}
+    <td>
+      <div class="col-md-2">
+        <div class="jumbotron">
+          <a href="#">
+           <img
+            src="{% static 'img/master.png'%}"  
+            class="w-300 mt-2 p-2 h-100"
+            alt="..."
+          />
+          </a>
+          <div class="card-body" style="height: 250px;">
+            <b><h5 class="card-title"><a class="btn btn-warning" href="#" style="color:#900C3F">{{cyc.cycle.nom}}{{cyc.niveau.numNiveau}}</a></h5></b>
+            </div>
+        </div>
+      </div>
+    </td>
+      {%endif%}
+  </div>
+
+</div>
+{% endfor%}
+</tr>
+</table>
+{% endblock %}

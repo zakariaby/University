@@ -1,0 +1,166 @@
+{% extends "UE/RespoFiliere/index2.html" %}
+
+{% block content %}
+{% load static %}
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+     
+      form{
+        width: 550px;
+        margin-left: 55%;
+        margin-top: -2%;
+
+      }
+      label{
+        margin-top: 5%;
+        margin-left: 10%;
+      }
+      input, select{
+        margin-left: 10%;
+        width: 10px;
+        
+      }
+      button{
+        margin-left: 900px;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+  <body>
+
+<div class ="container">
+  <br>
+  
+  {% for message in messages %}
+  <p class="alert alert-success mt-3"> {{ message }}</p>
+  {% endfor %}
+  <br>
+  {% if tc %}
+  
+  <br>
+  <div class="col-12">
+    <form method="POST" class="post-form" action="{% url 'updateTC' tc.id %}">
+      {% csrf_token %}
+      <div class="row">
+        <div class="form-group col-md-10">
+          <label for="cm" style="color:white"><b>Cour Magistrale</b></label>
+          <input type="number" class="form-control"  id="cm" name ="cm" value="{{tc.cm}}" placeholder="Saisir le type de cour">
+        </div>
+    </div><br>
+    <div class="row">
+      <div class="form-group col-md-10">
+        <label for="tp" style="color:white"><b>Travaux Pratique</b></label>
+        <input type="number" class="form-control"  id="tp" name ="tp" value="{{tc.tp}}" placeholder="Saisir le type de cour">
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="form-group col-md-10">
+        <label for="tpe" style="color:white"><b>Travaux Pratique de l'étudiant</b></label>
+        <input type="number" class="form-control"  id="tpe" name ="tpe" value="{{tc.tpe}}" placeholder="Saisir le type de cour">
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="form-group col-md-10">
+        <label for="td" style="color:white"><b>Travaux Dirigés</b></label>
+        <input type="number" class="form-control"  id="td" name ="td" value="{{tc.td}}" placeholder="Saisir le type de cour">
+      </div>
+    </div><br>
+  <div class="form-group col-md-10">
+    <label for="ec" style="color:white"><b>EC</b></label>
+    <select class="custom-select d-block w-100" id="ec"  name='ec' required>
+        <option value="{{tc.ec.id}}"><b>{{tc.ec.nomEc}}</b></option>
+      {% for ec in ecs%}
+      <option value="{{ec.id}}"><b>{{ec.nomEc}}</b></option>
+      {% endfor %}
+    </select>
+  </div>
+    <table>
+                        <tr></tr>
+                            <tr>
+                            <br><td>
+                                    <div class="col-md-2 col-md-offset-4">
+                                        <button type="submit" class="btn btn-success"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Modifier
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+  {% else %}
+ 
+  <br>
+  <div class="col-12">
+    <form method="POST" class="post-form" action="{% url 'ajoutTC'%}">
+      {% csrf_token %}
+  <div class="row">
+    <div class="form-group col-md-10">
+      <label for="cm" style="color:white"><b>Cour Magistrale</b></label>
+      <input type="number" class="form-control"  id="cm" name ="cm" placeholder="Saisir le type de cour">
+    </div>
+</div><br>
+<div class="row">
+  <div class="form-group col-md-10">
+    <label for="tp" style="color:white"><b>Travaux Pratique</b></label>
+    <input type="number" class="form-control"  id="tp" name ="tp" placeholder="Saisir le type de cour">
+  </div>
+</div><br>
+<div class="row">
+  <div class="form-group col-md-10">
+    <label for="tpe" style="color:white"><b>Travaux Pratique de l'étudiant</b></label>
+    <input type="number" class="form-control"  id="tpe" name ="tpe" placeholder="Saisir le type de cour">
+  </div>
+</div><br>
+<div class="row">
+  <div class="form-group col-md-10">
+    <label for="td" style="color:white"><b>Travaux Dirigés</b></label>
+    <input type="number" class="form-control"  id="td" name ="td" placeholder="Saisir le type de cour">
+  </div>
+</div><br>
+  <div class="form-group col-md-10">
+    <label for="ec" style="color:white"><b>EC</b></label>
+    <select class="custom-select d-block w-100" id="ec"  name='ec' required>
+      <option ><b>---</b></option>
+      {% for ec in ecs%}
+      <option value="{{ec.id}}"><b>{{ec.nomEc}}</b></option>
+      {% endfor %}
+    </select>
+  </div><br><br>
+  </div><br>
+  
+    <table>
+                            <tr>
+                            <br><td>
+                                    <div class="col-md-2 col-md-offset-4" >
+                                        <button type="submit" class="btn btn-success"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Enregistrer
+                                        </button>
+                                    </div>
+                                </td>
+                                
+                              
+                            </tr>
+                        </table>
+                        
+{% endif %}                       
+</form>
+  </div>
+</div>
+</div>
+<br>  
+  </div>
+</div>
+  </body>
+    {%endblock%}

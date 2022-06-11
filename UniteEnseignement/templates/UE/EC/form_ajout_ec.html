@@ -1,0 +1,171 @@
+{% extends "UE/RespoFiliere/index2.html" %}
+
+{% block content %}
+{% load static %}
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+     
+      form{
+        width: 500px;
+        margin-left: 55%;
+        margin-top: -2%;
+
+      }
+      label{
+        margin-top: 5%;
+        margin-left: 10%;
+      }
+      input, select{
+        margin-left: 10%;
+        width: 25px;
+        
+      }
+      button{
+        margin-left: 900px;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    
+  <body>
+
+<div class ="container">
+  <br>
+  
+  {% for message in messages %}
+  <p class="alert alert-success mt-3"> {{ message }}</p>
+  {% endfor %}
+  <br>
+  {% if ec %}
+<!--<div class="row">
+
+    <h2 class="align-center" style="color:#900C3F">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  Formulaire de modification de l'EC</h2>
+  </div>-->
+  <br>
+  <div class="col-12">
+    <form method="POST" class="post-form" action="{% url 'updateEC' ec.id %}">
+      {% csrf_token %}
+  <div class="row">
+    <div class="form-group col-md-10">
+      <h3><label for="nom" style="color:white"><b>Nom de l'EC</b></label></h3>
+      <input type="text" class="form-control"  id="nomEc"value="{{ec.nomEc }}" name ="nomEC" placeholder="Saisir l'EC">
+    </div></div><br>
+    <div class="row">
+    <div class="form-group col-md-10">
+      <label for="code" style="color:white"><b>Code de l'EC</b></label>
+      <input type="text" class="form-control" id="code" value="{{ec.codeEc}}" name ="codeEC" placeholder="Donner le code l'EC">
+    </div></div><br>
+    <div class="row">
+    <div class="form-group col-md-10">
+      <label for="coefficient" style="color:white"><b>Coefficient</b></label>
+      <input type="number" class="form-control" id="coefficient" value="{{ec.coefficient}}" name ="coefficient" placeholder="Donner le code l'EC">
+    </div><br>
+    <div class="form-group col-md-10">
+      <label for="ue" style="color:white"><b> UE</b></label><br>
+      <select class="custom-select d-block w-100" id="ue" multiple='true' name='ue' required>
+        <option ><b>---</b></option>
+        <option value="{{ec.ue.id}}"><b>{{ec.ue.nomUE}}</b></option>
+        {% for ue in ues%}
+        <option value="{{ue.id}}"><b>{{ue.nomUE}}</b></option>
+        {% endfor %}
+      </select>
+      <br>
+    <br>
+      
+    <div >
+      
+  </div><br> <br></div>
+    <table>
+                        <tr></tr>
+                            <tr>
+                            <br><td>
+                                    <div class="col-md-2 col-md-offset-4">
+                                        <button type="submit" class="btn btn-success"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Modifier
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        </form>
+                        </div>
+  {% else %}
+ <!-- <div class="row">
+
+    <h2 class="align-center" style="color:#900C3F">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Formulaire d'Ajout de l'EC</h2>
+  </div>-->
+  
+  <div class="col-12">
+    <form method="POST" class="post-form" action="{% url 'ajoutEC'%}">
+      {% csrf_token %}
+  <div class="row">
+    <div class="form-group col-md-10">
+      <label for="nom" style="color:white"><b>Nom</b></label>
+      <input type="text" class="form-control"  id="nomEC" name ="nomEC" placeholder="Saisir l'EC">
+    </div>
+</div><br>
+    <div class="row">
+    <div class="form-group col-md-10">
+      <label for="code" style="color:white"><b>Code</b></label>
+      <input type="text" class="form-control" id="codeEC" name ="codeEC" placeholder="Donner le code l'EC">
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="form-group col-md-10">
+      <label for="coefficient" style="color:white"><b>Coefficient</b></label>
+      <input type="number" class="form-control" id="coefficient" name ="coefficient" placeholder="Donner le code l'EC">
+    </div>
+    <div class="form-group col-md-10">
+      <label for="ue" style="color:white"><b> UE</b></label><br>
+      <select class="custom-select d-block w-100" id="ue" multiple='true' name='ue' required>
+        <option ><b>---</b></option>
+        {% for ue in ues%}
+        <option value="{{ue.id}}"><b>{{ue.nomUE}}</b></option>
+        {% endfor %}
+      </select>
+      <br>
+  
+      
+    <div >
+    
+  </div>
+  
+    <table>
+                            <tr>
+                           <td>
+                                    <div class="col-md-2 col-md-offset-4" >
+                                        <button type="submit" class="btn btn-success"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Enregistrer
+                                        </button>
+                                    </div>
+                                </td>
+                                
+                              
+                            </tr>
+                        </table>
+                        
+                      
+</form>
+  </div>
+  {% endif %} 
+</div>
+
+</div>
+<br>  
+  </div>
+</div>
+  {% endblock%}

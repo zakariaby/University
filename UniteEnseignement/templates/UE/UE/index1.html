@@ -1,0 +1,93 @@
+{% extends "UE/RespoFiliere/index2.html" %}
+
+{% block content %}
+{% load static %}
+<style>
+th.sem1{
+  border: 1px solid black;
+  height: 50px;
+  text-align:center;
+  background-color:#54a4c4;
+ 
+}
+
+ table.tab{
+  width: 95%;
+  margin-left: 25px;
+  margin-top:50px;
+  
+}
+table.table{
+  border: 1px solid black;
+  background-color:#313131;
+}
+thead{
+  background-color:#ffa100;
+
+}
+</style>
+<div class = "container">
+<body>
+  {% for sm in sms %}
+  <table class="tab"> 
+  <tr>
+    <th scope="row"class="sem1">Semestre{{sm.numSemestre}}</th>
+    </tr>
+</table>
+    {% for ue in ues %}
+<table class="table table-white">
+  <thead>
+    <tr>
+      <th scope="col" rowspan="4">Nom UE/ Elément Constitutif</th>
+      <th scope="col">CM</th>
+      <th scope="col">TD</th>
+      <th scope="col">TP</th>
+      <th scope="col">TPE</th>
+      <th scope="col">Volume horaire total (VHT)</th>
+      <th scope="col">Crédits</th>
+      <th scope="col">Coefficient</th>
+      <th scope="col">Volume horaire total  de l'EU</th>
+    </tr>
+  </thead>
+  <tr>
+    <th style="color: white" scope="col" rowspan="4">{{ue.codeUE}} :&nbsp; &nbsp;{{ue.nomUE}}</th>
+    <th style="color: white"></th>
+    <th style="color: white"></th>
+    <th style="color: white"></th>
+    <th style="color: white"></th>
+    <th style="color: white"></th>
+    <th style="color:rgb(248, 248, 6);" >{{ue.credit}}</th>
+    <th style="color: white"></th>
+    <th style="color: white"></th>
+    
+  </tr>
+  <tbody>
+    
+      {% for ec in ecs %}
+      {% for tc in tcs %}
+   <tr>
+      <td rowspan="4"><a href="{% url 'listeEC' ue.ec.id %}">{{ec.codeEc}}:&nbsp; &nbsp;{{ec.nomEc}}</a></td>
+      
+      <td scope="col" style="color:rgb(248, 248, 6);">{{tc.cm}}</td>
+      <td scope="col" style="color:rgb(248, 248, 6);">{{tc.td}}</td>
+      <td scope="col" style="color:rgb(248, 248, 6);">{{tc.tp}}</td>
+      <td scope="col" style="color:rgb(248, 248, 6);">{{tc.tpe}}</td>
+      <td style="color:rgb(248, 248, 6);">{{vl}}</td>
+      <td></td>
+      <td style="color:rgb(248, 248, 6);">{{ec.coefficient}}</td>
+      {% endfor%}
+      {% endfor%}
+    </tr>
+       
+  </tbody>
+  
+  {%endfor%}
+</table>
+{%endfor%}
+</body>
+</div>
+{%endblock%}  
+   
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

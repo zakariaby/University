@@ -1,0 +1,131 @@
+
+<!doctype html>
+<html lang="fr">
+{% load static %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Plateforme Universitaire</title>
+
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<meta name="theme-color" content="#7952b3">
+
+
+    <style>
+      body{
+        background-image:url("{% static 'img/prof.jpg' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        font-family: 'Numans', sans-serif;
+        }
+      form {
+        background-color: rgb(87, 87, 80);
+      }
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      img{
+        width:75px;
+        height:75px;
+        border-radius: 50%;
+        margin-right:100px;
+        max-height : 100%;
+        max-width : 100%;
+          
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      table.tab2{
+        border:navajowhite;
+      }
+      .dropdown{
+        margin-bottom:35px;
+        
+      }
+      .b1 {
+        margin-left: 5px;
+      }
+      a, b{
+        size: 25px;
+        color:rgb(236, 159, 14);
+      }
+      li{
+        margin-top: 10px;
+      }
+      a.d-block{
+        margin-top: 15px;
+      }
+
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/headers.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    
+    <title>Plateforme Universitaire</title>
+
+<main>
+  <h1 class="visually-hidden">Plateforme universitaire</h1>
+
+
+  <header class="p-2  text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <!--<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>-->
+        
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          
+          <img
+          src="{% static 'img/EC2LT.jpg' %}" /><li><p><a href="{% url 'acceuil' %}" class="nav-link px-2 "><b>Classes</b></a></p></li>
+        </ul>
+        <div class="dropdown text-end">
+          <a href="#" class="nav-link px-2 "> <b>Inscription</b>
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <table class="tab2">
+              <tr>
+                <td><li><a class="dropdown-item" href="{% url 'Iform' %}">Incription Etudiant</a></li></td>
+                <td><li><a class="dropdown-item" href="{% url 'IlisteClasse' %}">liste des inscrits</a></li></td>
+              </tr>
+            </table>
+          </ul>
+          </div>
+          <div>
+          <ul>
+          <a href='#' type="submit" class="btn btn-outline-warning btn-sm"> <span
+            class="fa fa-send">Déconnexion</span></a>
+          </ul>
+        </div>
+    </div>
+  </header>
+
+  <div class="b-example-divider"></div>
+
+</main>
+
+
+		{% block content %}
+   		{% endblock %}
+
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+      
+  </body>
+</html>

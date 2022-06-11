@@ -1,0 +1,198 @@
+{% extends "Enseignant/index.html" %}
+
+{% block content %}
+<div class ="container">
+    <div class="row">
+<br>
+<br>
+<br>
+        <div class="table-responsive" align="center">
+        <table>
+        <tr>
+            </tr>
+            
+            <tr>
+        <form method="POST">
+
+            <fieldset>
+                <br>
+                <br>
+                <br>
+                <br>
+            <legend> <h4 style="color:#900C3F">Liste de Présence</h4> </legend> 
+            <br>
+            
+            <table class="table table-bordered table-condensed table-hover" > <br>
+            <tr>
+                <div class="cold-md-8">
+                    <form action="/search" method="GET">
+                        <div class="input-group">
+                          <td colspan='3'> <input type="search" name="nom" class="form-control"></td>
+                          <td>
+                            <span class="input-group-prepend">
+                                <button type='submit' class="btn btn-primary">Rechercher</button>
+                            </span>
+                          </td>
+                        </div>
+                    </form>
+                </div>
+                </tr>
+                <tr class="bg-info">
+                    <th style="color:#900C3F"><b>N°</b></th>
+                    <th style="color:#900C3F"><b>Nom</b></th>
+                    <th style="color:#900C3F"><b>Prénom</b></th>
+                    <th style="color:#900C3F"><b>Date de Naissance</b></th>
+                    <th style="color:#900C3F"><b>Lieu de Naissance</b></th>
+                    <th style="color:#900C3F"><b>Présent</b></th>
+                    
+                </tr>
+                    {% for etudiant in etudiants %}
+                <tr>
+                    <td>{{etudiant.codePermanent}}</td>
+                    <td>{{etudiant.nom}}</td>
+                    <td>{{etudiant.prenom}}</td>
+                    <td>{{etudiant.dateNaiss}}</td>
+                    <td>{{etudiant.lieuNaiss}}</td>
+                    <td>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
+                          <label class="form-check-label" for="flexRadioDefault2">
+                            absent
+                          </label>
+                        </div>
+                    </td>
+                    
+                    
+                    
+                    {%endfor%}
+                </tr>
+                
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-primary" href='create'><span class="fa fa-bullhorn" style="color:#4f4;">
+                            </span> Ajouter </button>
+                    </td>
+                </div>
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-warning" href="#">Quitter</a>
+                    </td>            
+                </div> 
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-outline-success" href="#">Format Excel</a>
+                    </td>            
+                </div>
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-outline-primary" href="#">Format PDF</a>
+                    </td>            
+                </div>
+                </fieldset>
+            </table>
+            </form>
+            </tr>
+            </table>
+        </div>
+   </div>
+   <div>
+{% endblock %}  {% extends "index.html" %}
+
+{% block content %}
+<div class ="container">
+    <div class="row">
+<br>
+<br>
+<br>
+        <div class="table-responsive" align="center">
+        <table>
+        <tr>
+            </tr>
+            
+            <tr>
+        <form method="POST">
+
+            <fieldset>
+                <br>
+                <br>
+                <br>
+                <br>
+            <legend> <h4 style="color:#900C3F">Liste des Etudiants de...</h4> </legend> 
+            <br>
+            
+            <table class="table table-bordered table-condensed table-hover" > <br>
+            <tr>
+                <div class="cold-md-8">
+                    <form action="/search" method="GET">
+                        <div class="input-group">
+                          <td colspan='3'> <input type="search" name="nom" class="form-control"></td>
+                          <td>
+                            <span class="input-group-prepend">
+                                <button type='submit' class="btn btn-primary">Rechercher</button>
+                            </span>
+                          </td>
+                        </div>
+                    </form>
+                </div>
+                </tr>
+                <tr class="bg-info">
+                    <th style="color:#900C3F"><b>Code Permanent</b></th>
+                    <th style="color:#900C3F"><b>Nom</b></th>
+                    <th style="color:#900C3F"><b>Prénom</b></th>
+                    <th style="color:#900C3F"><b>Date de Naissance</b></th>
+                    <th style="color:#900C3F"><b>Lieu de Naissance</b></th>
+                    <th style="color:#900C3F"><b>Email</b></th>
+                    <th style="color:#900C3F"><b>Numéro Parent</b></th>
+                    <th style="color:#900C3F"><b>Délégué</b></th>
+                    <th style="color:#900C3F"><b>Modification</b></th>
+                    
+                </tr>
+                    {% for etudiant in etudiants %}
+                <tr>
+                    <td>{{etudiant.codePermanent}}</td>
+                    <td>{{etudiant.nom}}</td>
+                    <td>{{etudiant.prenom}}</td>
+                    <td>{{etudiant.dateNaiss}}</td>
+                    <td>{{etudiant.lieuNaiss}}</td>
+                    <td>{{etudiant.email}}</td>
+                    <td>{{etudiant.numTelParent}}</td>
+                    <td>{{etudiant.delegue}}</td>
+                    
+                    
+                    <div class="form-group ">
+                    <td>    <a class="btn btn-primary" type="submit" href="#">Modifier</a> </td>
+                    </div>
+                    
+                    {%endfor%}
+                </tr>
+                
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-primary" href='create'><span class="fa fa-bullhorn" style="color:#4f4;">
+                            </span> Ajouter </button>
+                    </td>
+                </div>
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-warning" href="#">Quitter</a>
+                    </td>            
+                </div> 
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-outline-success" href="#">Format Excel</a>
+                    </td>            
+                </div>
+                <div class="form-group">
+                    <td>
+                        <a class="btn btn-outline-primary" href="#">Format PDF</a>
+                    </td>            
+                </div>
+                </fieldset>
+            </table>
+            </form>
+            </tr>
+            </table>
+        </div>
+   </div>
+   <div>
+{% endblock %}  

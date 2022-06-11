@@ -1,0 +1,147 @@
+
+{% extends "UE/RespoFiliere/index2.html" %}
+
+{% block content %}
+{% load static %}
+  
+    <style>
+       .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+     
+      form{
+        width: 500px;
+        margin-left: 55%;
+        margin-top: -2%;
+
+      }
+      label{
+        margin-top: 5%;
+        margin-left: 10%;
+      }
+      input, select{
+        margin-left: 10%;
+        width: 25px;
+        
+      }
+      button{
+        margin-left: 200px;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/headers.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    
+
+
+
+<div class ="container">
+  
+  
+  {% for message in messages %}
+  <p class="alert alert-success mt-3"> {{ message }}</p>
+  {% endfor %}
+  
+  {% if ue %}
+  <div class="col-12">
+    <form method="POST" class="post-form" action="{% url 'editUE'%}">
+      {% csrf_token %}
+    <div class="form-group col-md-10">
+      <label for="nom" style="color:white"><b>Nom</b></label>
+      <input type="text" class="form-control"  id="nomUE"value="{{ue.nomUE}}" name ="nomUE" placeholder="SaisSaisir l'UE">
+    </div><br>
+    <div class="form-group col-md-10">
+      <label for="code" style="color:white"><b>Code</b></label>
+      <input type="text" class="form-control" id="codeUE" value="{{ue.codeUE}}" name ="codeUE" placeholder="Donner le code l'UE">
+    </div>
+  <br>
+  <div class="form-group col-md-10" >
+    <label for="adresse" style="color:white"><b>Crédit</b></label>
+    <input type="number" class="form-control" id="credit"value="{{ue.credit}}" name ="credit" placeholder="Donner le credit de l'UE">
+  </div>
+<br>
+<div class="form-group col-md-10">
+  <label for="semestre" style="color:white"><b>Semestre</b></label>
+  <select class="custom-select d-block w-100" id="semestre"  name='semestre' required>
+      <option ><b>---</b></option>
+      <option value="{{ue.semestre.id}}"><b>{{ue.semestre.num}}</b></option>
+    {% for sm in sms%}
+    <option value="{{sm.id}}"><b>Semestre&nbsp{{sm.numSemestre}}&nbsp{{sm.filereCycle.cycle.nom}}&nbsp{{sm.filereCycle.filiere.nomFiliere}}</b></option>
+    {% endfor %}
+  </select>
+</div><br>
+<br>
+    <table>
+                        <tr></tr>
+                            <tr>
+                            <br><td>
+                                    <div class="col-md-2 col-md-offset-4">
+                                        <button type="submit" class="btn btn-success"> <span
+                                        class="fa fa-send" style="color:IndianRed;">Modifier</span> 
+                                            
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+    </form>
+  </div>
+  {% else %}
+  
+  <div class="col-12">
+    <div class="d-flex flex-wrap align-items-right justify-content-center justify-content-lg-start">
+    <form method="POST" class="post-form" action="{% url 'ajoutUE'%}">
+      {% csrf_token %}
+    <table class = "tab1">
+    <div class="form-group col-md-10">
+      <label for="nom" style="color:white"><b>Nom de l'UE</b></label>
+      <input type="text" class="form-control" id="nomUE" name ="nomUE" placeholder="Entrer le nom de l'UE">
+    </div>
+    <div class="form-group col-md-10">
+      <label for="nom" style="color:white"><b>Code de l'UE</b></label>
+     <b> <input type="text" class="form-control" id="codeUE" name ="codeUE" placeholder="Donner le code l'UE"></b>
+    </div>
+  
+  <div class="form-group col-md-10" >
+    <label for="nom" style="color:white"><b>Crédit de l'UE</b></label>
+    <input type="number" class="form-control" id="credit" name ="credit" placeholder="Donner le crédit de l'UE">
+  </div>
+
+<div class="form-group col-md-10">
+  <label for="ec" style="color:white"><b> Semestre</b></label><br>
+  <select class="custom-select d-block w-100" id="semestre" multiple='true' name='semestre' required>
+    <option ><b>---</b></option>
+    {% for sm in sms%}
+    <option value="{{sm.id}}"><b>Semestre&nbsp{{sm.numSemestre}}&nbsp{{sm.filereCycle.cycle.nom}}&nbsp{{sm.filereCycle.filiere.nomFiliere}}</b></option>
+    {% endfor %}
+  </select>
+  <br>
+<br>
+  
+<div >
+  <button type="submit" class="btn btn-success"> <span
+  class="fa fa-send" style="color:#4f4;"></span> 
+      Enregistrer
+  </button>
+</div>
+                    
+                  
+</form>
+</div>
+{% endif %} 
+</div>
+
+</body>
+<br>{% endblock%}

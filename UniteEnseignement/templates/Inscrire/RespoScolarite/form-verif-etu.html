@@ -1,0 +1,57 @@
+{% extends "Inscrire/RespoScolarite/index.html" %}
+
+{% block content %}
+{% load static %}
+<style>
+  input,select{
+    margin-left: 60px;
+    width: 25px
+  }
+  label{
+    margin-left: 60px;
+    color:white;
+  }
+  h3{
+    color:white;
+  }
+</style>
+
+<div class ="container">
+  <br>
+  <p> {{ text }}</p>
+  <div class="col-12">
+    <form method="POST" class="post-form" action="voirEtu"listeFili>
+      {% csrf_token %}
+  <div class="row">
+    <h3>Etudiant</h3>
+    <div class="form-group col-md-5"><br>
+      <label for="codePermanent" style="color:white"><b> Code Permanent</b></label>
+      <input type="Number" class="form-control" id="codePermanent" name="codePermanent" placeholder="Saisir le code permanent" required>
+    </div><br>
+  </div>    <br>  
+    <table>
+                        
+                            <tr>
+                            <br><td>
+                                    <div class="col-md-2 col-md-offset-4">
+                                        <button type="submit" class="btn btn-dark" style="margin-left: 70px;"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Vérifier
+                                        </button><br><br>
+                                    </div>
+                                </td>
+                                <td> <p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</p></td>
+                               
+                            </tr>
+                        </table>
+                        
+</form>
+  </div>
+    
+  </div>
+</div>
+    <!-- MDB -->
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>
+{% endblock %}

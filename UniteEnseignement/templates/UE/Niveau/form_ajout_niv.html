@@ -1,0 +1,114 @@
+{% extends "UE/RespoFiliere/index2.html" %}
+
+{% block content %}
+{% load static %}
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+     
+       
+      form{
+        width: 500px;
+        margin-left: 55%;
+        margin-top: 2%;
+
+      }
+      label{
+        margin-top: 5%;
+        margin-left: 10%;
+      }
+      input, select{
+        margin-left: 10%;
+        width: 25px;
+        
+      }
+      button{
+        margin-left: 1000px;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+
+<div class ="container">
+  <br>
+  
+  {% for message in messages %}
+  <p class="alert alert-success mt-3"> {{ message }}</p>
+  {% endfor %}
+  <br>
+  {% if fil %}
+  <br>
+  <div class="col-12">
+    <form method="POST" class="post-form" action="{% url 'updateNiv' fil.id %}">
+      {% csrf_token %}
+    
+  <div class="form-group col-md-10">
+    <label for="numNiveau" style="color:White"><b>Numéro</b></label>
+    <input type="Number" class="form-control"  id="numNiveau" name ="numNiveau" value='numNiveau' placeholder="Saisir le numéro de niveau">
+  </div>
+     <br>
+    <table>
+                        <tr></tr>
+                            <tr>
+                            <br><td>
+                                    <div class="col-md-2 col-md-offset-4">
+                                        <button type="submit" class="btn btn-success"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Modifier
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+  {% else %}
+    </form>
+  </div>
+  <br>
+  <div class="col-12">
+    <form method="POST" class="post-form" action="{% url 'ajoutNiv'%}">
+      {% csrf_token %}
+  
+<div class="form-group col-md-10">
+  <label for="numNiveau" style="color:White"><b>Numéro</b></label>
+  <input type="Number" class="form-control"  id="numNiveau" name ="numNiveau" placeholder="Saisir le numéro de niveau">
+  <br>
+</div>
+
+  
+  
+    <table>
+                            <tr>
+                            <br><td>
+                                    <div class="col-md-2 col-md-offset-4" >
+                                        <button type="submit" class="btn btn-primary" style="margin-left:200px;"> 
+                                            Enregistrer
+                                        </button><br>
+                                    </div>
+                                    <br>
+                                </td>
+                                
+                                
+                              
+                            </tr>
+                        </table>
+                        
+                       
+</form>
+  </div>
+
+{% endif %}
+
+</div>
+    {%endblock%}

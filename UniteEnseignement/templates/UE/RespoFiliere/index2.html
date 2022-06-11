@@ -1,0 +1,225 @@
+
+<!doctype html>
+<html lang="fr">
+{% load static %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Plateforme Universitaire</title>
+
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<meta name="theme-color" content="#7952b3">
+
+
+    <style>
+      #premier{
+        background-image:url("{% static 'img/resfi.jpg' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height:100%;
+        width:100%;
+        font-family: 'Numans', sans-serif;
+        }
+      form {
+        background-color: rgb(87, 87, 80);
+        height:100%;
+        width:100%;
+      }
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      
+      img.logo{
+        width:75px;
+        height:75px;
+        border-radius: 50%;
+        margin-right:100px;
+        max-height : 100%;
+        max-width : 100%;
+          
+      }
+
+      body{
+        background-image:url("{% static 'img/resfi.jpg' %}") ;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height:100%;
+        width:100%;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      table.tab2{
+        border:navajowhite;
+      }
+      .dropdown{
+        margin-bottom:20px;
+        
+      }
+      .p-2{
+        background-color: rgba(0, 0, 0, 0.55);
+        font-family: 'Merriweather', serif;
+        box-shadow: 1px, 1px, 3px, rgba(255, 255, 255, 0.54);
+      }
+      a.btn{
+        margin-top: 20px;
+        color:var(--bs-yellow);
+        border-color:var(--bs-yellow);
+        transition: 0.5s;
+      }
+      a.btn:hover,
+      a.btn:active {
+        color:white;
+        background-color: var(--bs-yellow);
+      }
+      a.d-block{
+        color: var(--bs-yellow);
+        margin-top: 15px;
+        border-bottom: 1px solid transparent;
+        transition:padding-bottom .4s ease-in-out, border-color .3s ease;
+      }
+      a.nav-link{
+        padding-bottom:20px;
+        border-bottom-color: var(--bs-yellow);
+      }
+      a{
+        color: var(--bs-yellow);
+        font-size: 20px;
+        font-style: italic;
+      }
+      a.azerty{
+        border-bottom: 1px solid transparent;
+        margin-top: 15px;
+        text-decoration: none;
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/headers.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    
+    <title>Plateforme Universitaire</title>
+
+<main>
+  <h1 class="visually-hidden">Plateforme universitaire</h1>
+
+  <div class="imag">
+  <header class="p-2  text-white">
+    <div class="container">
+      
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <!--<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>-->
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          
+          <img class="logo"
+          src="{% static 'img/EC2LT.jpg' %}" />
+          <div class="dropdown " style="margin-top:20px;">
+            <a  class="azerty" href="{% url 'acceuil'%}"><b> Acceuil</b>
+            </a>
+          </div>
+        <div class="dropdown text-end" >
+          <a href="#" style="margin-left:450px;" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false"> <b>Filiere</b>
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <table class="tab2">
+              <tr>
+                <td><li style="color:#900C3F"><b>&nbsp &nbsp Filières</b></li></td>
+                <td><li style="color:#900C3F"><b>&nbsp &nbsp Semestres</b></li></td>
+                <td><li style="color:#900C3F"><b>&nbsp &nbsp Niveaux</b></li></td>
+              </tr>
+              <tr>
+                <td><li><a class="dropdown-item" href="{% url 'listeFil' %}">liste des filières</a></li></td>
+                <td><li><a class="dropdown-item" href="{% url 'listeSM'%}">Afficher la liste des Semestres</a></li></td>
+                <td><li><a class="dropdown-item" href="{% url 'formNiv'%}">Saisir les Niveaux</a></li></td>
+              </tr>
+              <tr>
+                <td><li><a class="dropdown-item" href="{% url 'formFil'%}">Ajouter une filière</a></li></td>
+                <td><li><a class="dropdown-item" href="{% url 'formSM'%}">Saisir les Semestres</a></li></td>
+
+              </tr>
+              <tr>
+                <td><li style="color:#900C3F"><b>&nbsp &nbsp Cycle</b></li></td>
+              </tr>
+              <tr>
+                <td><li><a class="dropdown-item" href="{% url 'listeCyc'%}">Afficher la liste des Cycles</a></li></td>
+                <td><li><a class="dropdown-item" href="{% url 'formCyc'%}">Ajouter une Cycle</a></li></td>
+              </tr>
+            </table>
+          </ul>
+        </div>&nbsp &nbsp
+        <div class="dropdown ">
+          <a href="#" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false"><b> Cahier de texte</b>
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="#"></a></li>
+          </ul>
+        </div> &nbsp &nbsp
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false"> <b>EC</b>
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <table class="tab2">
+              <tr>
+              <td><li style="color:#900C3F"><b>&nbsp &nbsp E.C.</b></li></td>
+              <td></td>
+              <td><li style="color:#900C3F"><b>&nbsp &nbsp Cours</b></li></td>
+            </tr>
+              <tr>
+                <td><li><a class="dropdown-item" href="{% url 'listerEC' %}">Liste des éléments constitutifs</a></li></td>
+                <td><li><a class="dropdown-item" href="{% url 'formEC'%}">Ajouter un élément constitutif</a></li></td>
+                <td><li><a class="dropdown-item" href="{% url 'ajoutTC'%}">Ajout volume horaire</a></li></td>
+              </tr>
+              <tr>
+                <td><li><a class="dropdown-item" href="#">Saisir la description de l'EC</a></li></td>
+                <td><li><a class="dropdown-item" href="#">Saisir la présentation de l'EC</a></li></td>
+              </tr>
+              <tr>
+                <td><li><a class="dropdown-item" href="#">Voir Présentation et description de l'Ec</a></li></td>
+              </tr>
+            </table>
+          </ul>
+        </div>&nbsp &nbsp
+        <div class="dropdown text-end">
+          <a href="#" style="margin-right: 10px;" class="d-block link-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false"> <b>UE</b>
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="{% url 'listeUE'%}">Liste des unités d'enseignement</a></li>
+            <li><a class="dropdown-item" href="{% url 'formUE'%}">Ajouter une unité d'enseignement</a></li>
+          </ul>
+        </div>
+        <div class="dropdown text-end">
+          <a class="btn" href="#">Déconnexion</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="b-example-divider"></div>
+
+</main>
+</div>
+		{% block content %}
+   		{% endblock %}
+
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+      
+  </body>
+</html>

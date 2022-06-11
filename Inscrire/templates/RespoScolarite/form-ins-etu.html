@@ -1,0 +1,112 @@
+{% extends "RespoScolarite/index.html" %}
+
+{% block content %}
+{% load static %}
+<style>
+  input{
+    margin-left: 60px;
+    width: 25px
+  }
+  label{
+    margin-left: 60px;
+    color:white;
+  }
+</style>
+
+<div class ="container">
+  <br>
+  <p> {{ text }}</p>
+  <div class="col-12">
+    <form method="POST" class="post-form" action="ajoutEtu">
+      {% csrf_token %}
+  <div class="row">
+    
+    <div class="form-group col-md-5"><br>
+      <label for="nom" style="color:white">Nom</label>
+      <input type="text" class="form-control" id="nom" placeholder="Saisir le nom de l'étudiant">
+    </div><br>
+    <div class="form-group col-md-5"><br>
+      <label for="prenom" style="color:white">Prénom</label>
+      <input type="text" class="form-control" id="prenom" placeholder="Saisir le prenom de l'étudiant">
+    </div>
+  </div><br>
+  <div class="form-group col-md-10">
+    <label for="adresse" style="color:white">Adresse</label>
+    <input type="text" class="form-control" id="adresse" placeholder="Saisir l'adresse de l'étudiant">
+  </div><br>
+  <div class="row">
+  <div class="form-group col-md-5">
+    <label for="dateNaiss" style="color:white">Date de naissance</label>
+    <input type="Date" class="form-control" id="dataNaiss" placeholder="Saisir la date de naissance de l'étudiant">
+  </div>
+  <div class="form-group col-md-5">
+    <label for="lieuNaiss" style="color:white">Lieu de naissance</label>
+    <input type="text" class="form-control" id="lieuNaiss" placeholder="Saisir le lieu de naissance de l'étudiant">
+  </div>
+  </div><br>
+  <div class="row">
+  <div class="form-group col-md-5">
+    <label for="numTel" style="color:white">Numéro de téléphone</label>
+    <input type="number" class="form-control" id="numTel" placeholder="Saisir le numéro de téléphone de l'étudiant">
+  </div>
+  <div class="form-group col-md-5">
+    <label for="email" style="color:white">Email</label>
+    <input type="email" class="form-control" id="email" placeholder="Saisir l'email de l'étudiant">
+  </div>
+  </div><br>
+  <div class="row">
+    <div class="form-group col-md-5">
+      <label for="nomParent" style="color:white">Nom Parent/Tuteur</label>
+      <input type="text" class="form-control" id="nom" placeholder="Saisir le nom du tuteur">
+    </div><br>
+    <div class="form-group col-md-5">
+      <label for="prenomParent" style="color:white">Prénom Parent/Tuteur</label>
+      <input type="text" class="form-control" id="prenom" placeholder="Saisir le prénom du tuteur">
+    </div>
+  </div><br>
+  <div class="row">
+  <div class="form-group col-md-5">
+    <label for="numTelParent" style="color:white">Numéro de téléphone parent/tuteur</label>
+    <input type="text" class="form-control" id="numTelParent" placeholder="Saisir le numéro de téléphone du parent ">
+  </div>
+  <div class="form-group col-md-5"><br>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-secondary active">
+      <input type="checkbox" name="delegue" id="delegue" autocomplete="off"> Délégué
+    </label>
+    </div>
+  </div>
+  </div>
+  <br>
+    <table>
+                        <tr></tr>
+                            <tr>
+                            <br><td>
+                                    <div class="col-md-2 col-md-offset-4">
+                                        <button type="submit" class="btn btn-dark" style="margin-left: 70px;"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Ajouter
+                                        </button>
+                                    </div>
+                                </td>
+                                <td> <p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</p></td>
+                                <td>
+                                    <div class="col-md-3 col-md-offset-2">
+                                        <a class="btn btn-danger"  href="#">
+                                            Carte Etudiant
+                                        </a>
+                                    </div>
+                                <td>
+                            </tr>
+                        </table>
+                        
+</form>
+  </div>
+    
+  </div>
+</div>
+    <!-- MDB -->
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>
+{% endblock %}

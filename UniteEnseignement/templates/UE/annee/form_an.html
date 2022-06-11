@@ -1,0 +1,103 @@
+
+<!doctype html>
+<html lang="en">
+{% load static %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Plateforme Universitaire</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/headers/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#7952b3">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+       
+      form{
+        width: 500px;
+        margin-left: 55%;
+        margin-top: -2%;
+
+      }
+      label{
+        margin-top: 5%;
+        margin-left: 10%;
+      }
+      input, select{
+        margin-left: 10%;
+        width: 25px;
+        
+      }
+      button{
+        margin-left: 900px;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/headers.css' %}" rel="stylesheet">
+  </head>
+  <body>
+        <form method="POST" class="post-form" action="ajoutAn">
+            {% csrf_token %}
+            <div class = "container">
+              <br>
+            <div class="row">
+              <br>
+                <div class="form-group col-md-6">
+                <label for="anDebut" style="color:#900C3F"><b>Année de début</b></label>
+                <input type="text" class="form-control" id="anDebut" name ='anDebut' placeholder="Saisir l' année de début">
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="form-group col-md-6">
+                <label for="anFin" style="color:#900C3F"><b>Année de Fin </b></label>
+                <input type="text" class="form-control" id="anFin" name="anFin" placeholder="Saisir l' année de Fin">
+                </div>
+            </div><br>
+          
+            <table>
+                <tr></tr>
+                    <tr>
+                    <br><td>
+                            <div class="col-md-2 col-md-offset-4">
+                                <button type="submit" class="btn btn-dark"> <span
+                                class="fa fa-send" style="color:#4f4;"></span> 
+                                    Ajouter
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+              </div>
+        </form>
+  </body>
+</html>

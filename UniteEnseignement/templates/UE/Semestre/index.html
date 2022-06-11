@@ -1,0 +1,41 @@
+{% extends "UE/RespoFiliere/index2.html" %}
+
+{% block content %}
+{% load static %}
+<style>
+  table.table{
+  width: 70%;
+  margin-left: 200px;
+  margin-top:50px;
+  
+}
+</style>
+<br>
+<br>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<div class="container">
+<table class="table">
+  <div >
+    <thead class="thead-warning">
+      {% for sm in sms %}
+      <tr>
+        <th scope="col"> <a href="{% url 'listUE' sm.id  %}">&nbsp Semestre {{sm.numSemestre}}</a> </th>
+        <td>
+          <a href="{% url 'deleteSM' sm.id %}" type="submit" class="btn"> <span
+          class="fa fa-send" style="color:red;"><b> Supprimer </b></span> 
+          </a>
+        </td>
+        <td>
+          <a href="{% url 'editSM' sm.id %}" type="submit" class="btn"> <span
+          class="fa fa-send" style="color:#4f4;"> <b>Modifier </b></span>
+          </a>
+        </td>
+      </tr> 
+      {% endfor %}
+    </thead>
+  </div>
+</table>
+
+</div>
+   
+  {% endblock%}

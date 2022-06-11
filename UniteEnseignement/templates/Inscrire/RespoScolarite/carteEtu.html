@@ -1,0 +1,45 @@
+{% extends "Inscrire/RespoScolarite/index.html" %}
+
+{% block content %}
+<br><br><br>
+<div class ="container">
+    <div class="row">
+      <br>
+      <br>
+      <br>
+      <div class="table-responsive">
+        <br>
+        <table>
+            <tr>
+              <th scope="row" style="color: blue; font-family:'Times New Roman', Times, serif; font-size: 27px; text-align: center;
+              ">&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Ecole Centrales des Logiciels Libres et des Télécommunications</th> 
+            </tr>
+            <tr>
+                <th style="color: blue; font-family:'Times New Roman', Times, serif; font-size: 30px;">logo EC2LT</th>
+                <th style="color: black; font-family:'Times New Roman', Times, serif; font-size: 25px;">Carte Etudiant(e)</th>
+            </tr> 
+            <tr>
+                <th style="color: blue; font-family:'Times New Roman', Times, serif; font-size: 15px;">ECOLE CENTRALE DES LOGICIELS LIBRES <br> ET DE TELECOMMUNICATION </th>
+                <th style="color: red; font-family:'Times New Roman', Times, serif; font-size: 25px;"> ANNEE ACADEMIQUE <br>2020-2021</th>
+            </tr>
+            <tr><th style="font-family:'Times New Roman', Times, serif; text-align: center;"> L3 TR </th></tr>
+            <tr>
+              <td>
+                <tr><td><b>Prenom:&nbsp{{etudiant.prenom}}</b></td> <td rowspan="5"><img src="{{etudiant.photo.url}}" style="width: 200px; height:200px; float: left; margin-right: 10px;"></td> </tr>
+                <tr><td><b>Nom:&nbsp{{etudiant.nom}}</b></td></tr>
+                <tr><td><b>mat.:&nbsp{{etudiant.codePermanent}}</b></td></tr>
+                <tr><td><b>Cel :&nbsp{{etudiant.numTel}}</b></td></tr>
+                <tr><td><b>Email:&nbsp{{etudiant.email}}</b></td></tr>
+                <tr><td><b>Tel:78 235 12 36 </b><b> Site Web:azerr@qsd.sn</b></td></tr>
+              </td>
+              
+            </tr>
+
+        </table>
+        <br>
+    </div>
+    </div>
+</div>
+<br>
+<br>
+{% endblock %}

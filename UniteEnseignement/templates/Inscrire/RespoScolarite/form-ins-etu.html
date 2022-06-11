@@ -1,0 +1,168 @@
+{% extends "Inscrire/RespoScolarite/index.html" %}
+
+{% block content %}
+{% load static %}
+<style>
+  input,select{
+    margin-left: 60px;
+    width: 25px
+  }
+  label{
+    margin-left: 60px;
+    color:white;
+  }
+  h3{
+    color:white;
+  }
+</style>
+
+<div class ="container">
+  <br>
+  <p> {{ text }}</p>
+  <div class="col-12">
+    <form method="POST" class="post-form" action="{% url 'ajoutEtu' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+  <div class="row">
+    <h3>Etudiant</h3>
+    <div class="form-group col-md-5"><br>
+      <label for="nom" style="color:white"><b> Nom</b></label>
+      <input type="text" class="form-control" id="nom" name="nom" placeholder="Saisir le nom de l'étudiant" required>
+    </div><br>
+    <div class="form-group col-md-5"><br>
+      <label for="prenom" style="color:white"><b>Prénom</b></label>
+      <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Saisir le prenom de l'étudiant" required>
+    </div>
+  </div>
+  <div class="row">
+  <div class="form-group col-md-5"><br>
+    <label for="adresse" style="color:white"><b>Adresse</b></label>
+    <input type="text" class="form-control" id="adresse"  name="adresse"placeholder="Saisir l'adresse de l'étudiant" required>
+  </div> <br>
+  <div class="form-group col-md-5"><br>
+    <label for="typeIdentite" style="color:white"><b>Passport/Carte d'identité</b></label>
+    <table>
+      <tr>
+        <td>
+          <input type="number" min="13" class="form-control" id="numIdentifiant" name="numIdentifiant" placeholder="Saisir l'adresse de l'étudiant" required>
+        </td>
+        <td>
+          <select class="custom-select d-block w-100"  id="nomIdentifiant"  name='nomIdentifiant' required>
+            <option value="carte d'idendité"><b>Carte d'identité</b></option>
+            <option value="passeport"><b>Passeport</b></option>
+          </select>
+        </td>
+      </tr>
+    </table>
+</div><br>
+  <div class="row">
+  <div class="form-group col-md-5"><br>
+    <label for="dateNaiss" style="color:white"><b>Date de naissance</b></label>
+    <input type="date" class="form-control" id="dateNaiss" name="dateNaiss" placeholder="Saisir la date de naissance de l'étudiant" required>
+  </div><br>
+  <div class="form-group col-md-5"><br>
+    <label for="lieuNaiss" style="color:white"><b>Lieu de naissance</b></label>
+    <input type="text" class="form-control" id="lieuNaiss"name="lieuNaiss" placeholder="Saisir le lieu de naissance de l'étudiant" required>
+  </div><br>
+  </div><br>
+  <div class="row">
+  <div class="form-group col-md-5"><br>
+    <label for="numTel" style="color:white"><b>Numéro de téléphone</b></label>
+    <input type="tel" minlength="11" maxlength="11" class="form-control" id="numTel"name="numTel" placeholder="Saisir le numéro de téléphone de l'étudiant" required>
+  </div>
+  <div class="form-group col-md-5"><br>
+    <table>
+      <tr>
+        <td>
+          <label for="email" style="color:white"><b>Email</b></label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="adresse email" required>
+        </td>
+        <td>
+          <label for="password" style="color:white"><b>Password</b></label>
+          <input type="password" minlength="8" required pattern="[A-Za-z]+"  class="form-control" id="password" name="password" placeholder="mot de passe" required>
+        </td>
+      </tr>
+    </table>
+  </div>
+  </div><br>
+  <div class="row">
+    <div class="form-group col-md-5"><br>
+      <label for="nationalite" style="color:white"><b>Nationalité</b></label>
+      <input type="text" class="form-control" id="nationalite" name="nationalite" placeholder="Saisir  " required>
+    </div>
+    <div class="form-group col-md-5"><br>
+      <label for="photo" style="color:white"><b>Photo</b></label>
+      <input type="file" class="form-control" id="photo" name="photo" required>
+    </div><br>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-5"><br>
+      <label for="sexe" style="color:white"><b>Sexe</b></label>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-secondary active">
+            <input type="checkbox" name="sexe" value="masculin" id="sexe" autocomplete="off"> Masculin
+          </label>
+          <label class="btn btn-secondary active">
+            <input type="checkbox" name="sexe" value="féminin" id="sexe" autocomplete="off"> Féminin
+          </label>
+      </div></div><br>
+    <div class="form-group col-md-5"><br><br>
+      <label for="filereCycle" style="color:white"><b>Niveau</b></label>
+        <select class="custom-select d-block w-100"  id="filereCycle"  name='filereCycle' required>
+          <option value=""><b>---</b></option>
+        {% for fil in fils%}
+        <option value="{{fil.id}}"><b>{{fil.cycle.nom}}&nbsp{{fil.cycle.niveau}}&nbsp{{fil.filiere.nomFiliere}}</b></option>
+        {% endfor %}
+      </select>
+      <br><br>
+    </div><br>
+    </div>
+  <br><br><br>
+  <div class="row">
+    <br><br>
+  <h3>Parent ou tuteur de l'étudiant</h3>
+    <div class="form-group col-md-5"><br>
+      <label for="nomParent" style="color:white"><b>Nom Parent/Tuteur</b></label>
+      <input type="text" class="form-control" id="nomParent" name="nomP" placeholder="Saisir le nom du tuteur"  required>
+    </div><br>
+    <div class="form-group col-md-5"><br>
+      <label for="prenomParent" style="color:white"><b>Prénom Parent/Tuteur</b></label>
+      <input type="text" class="form-control" id="prenomParent" name="prenomP" placeholder="Saisir le prénom du tuteur" required>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="form-group col-md-5"><br>
+      <label for="numTelParent" style="color:white"><b>Numéro de téléphone parent/tuteur</b></label>
+      <input type="tel" minlength="11" maxlength="11" class="form-control" id="numTelParent" name="numTelP" placeholder="Saisir le numéro de téléphone du parent " required>
+    </div>
+    <div class="form-group col-md-5"><br>
+      <label for="emailParent" style="color:white"><b>Email parent/tuteur</b></label>
+      <input type="email" class="form-control" id="emailParent" name="emailP" placeholder="Saisir l'email de l'étudiant" required>
+    </div><br><br>
+    </div>
+    <div class="form-group col-md-5"><br>
+      <label for="Parent" style="color:white"><b>Adresse parent/tuteur</b></label>
+      <input type="text" class="form-control" id="adresseParent" name="adresseP" placeholder="Saisir l'adresse de l'étudiant" required>
+    </div><br><br><br>
+
+    <table>
+                        
+                            <tr>
+                            <br><td>
+                                    <div class="col-md-2 col-md-offset-4">
+                                        <button type="submit" class="btn btn-dark" style="margin-left: 70px;"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Ajouter
+                                        </button>
+                                    </div>
+                                </td>
+                                <td> <p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</p></td>
+                               
+                            </tr>
+                        </table>
+                        
+</form>
+  </div>
+    
+  </div>
+</div>
+{% endblock %}

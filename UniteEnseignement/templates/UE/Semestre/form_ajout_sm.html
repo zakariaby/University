@@ -1,0 +1,136 @@
+{% extends "UE/RespoFiliere/index2.html" %}
+
+{% block content %}
+{% load static %}
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+     
+      form{
+        width: 500px;
+        margin-left: 55%;
+        margin-top: -2%;
+
+      }
+      label{
+        margin-top: 5%;
+        margin-left: 10%;
+      }
+      input, select{
+        margin-left: 10%;
+        width: 25px;
+        
+      }
+      button{
+        margin-left: 700px;
+      }
+      .check1{
+        margin-left:15%;
+        text-decoration-color:blue;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+<div class ="container">
+  <br>
+  
+  {% for message in messages %}
+  <p class="alert alert-success mt-3"> {{ message }}</p>
+  {% endfor %}
+  <br>
+  {% if sm %}
+  
+  <br>
+  <div class="col-12">
+    <form method="POST" class="post-form" action="{% url 'updateSM' sm.id %}">
+      {% csrf_token %}
+  <div class="row">
+    <div class="form-group col-md-10">
+      <h3><label for="numSemestre" style="color:white"><b>Semestre</b></label></h3>
+      <input type="text" class="form-control"  id="numSemestre"value="{{sm.numSemestre}}" name ="numSemestre" placeholder="Saisir l'EC">
+    </div><br>
+  <div class="form-group col-md-10">
+    <label for="cycle" style="color:white"><b>Cycle</b></label>
+    <select class="custom-select d-block w-100"  id="cycle"  name='cycle' required>
+        <option value="{{sm.cycle.id}}"><b>{{sm.cycle.nom}}</b></option>
+      {% for cyc in cycs%}
+      <option value="{{cyc.id}}"><b>{{cyc.nom}}</b></option>
+      {% endfor %}
+    </select>
+  </div>
+  </div><br><br>
+    <table>
+                        <tr></tr>
+                            <tr>
+                            <br><td>
+                                    <div class="col-md-2 col-md-offset-4">
+                                        <button type="submit" class="btn btn-success"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Modifier
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        </div>
+    </form>
+  {% else %}
+  <br>
+  <div class="col-12">
+    <form method="POST" class="post-form" action="{% url 'ajoutSM' %}">
+      {% csrf_token %}
+  <div class="row">
+    <div class="form-group col-md-10">
+      <label for="numSemestre" style="color:white"><b>Semestre</b></label>
+      <input type="number" class="form-control"  id="numSemestre" name ="numSemestre" placeholder="Saisir le numéro du semestre">
+    </div>
+</div><br>
+  <div class="form-group col-md-10">
+    <label for="filiereCycle" style="color:white"><b>Cycle</b></label>
+      
+      <select class="custom-select d-block w-100"  id="filiereCycle"  name='filiereCycle' required>
+        <option value=""><b>---</b></option>
+      {% for cyc in cycs%}
+      <option value="{{cyc.id}}"><b>{{cyc.cycle.nom}}&nbsp{{cyc.cycle.niveau}}&nbsp{{cyc.filiere.nomFiliere}}</b></option>
+      {% endfor %}
+    </select>
+    <br>
+  </div><br>
+  </div><br>
+  
+    <table>
+                            <tr>
+                            <br><td>
+                                    <div class="col-md-2 col-md-offset-4" >
+                                        <button type="submit" class="btn btn-success"> <span
+                                        class="fa fa-send" style="color:#4f4;"></span> 
+                                            Enregistrer
+                                        </button>
+                                    </div>
+                                </td>
+                                
+                              
+                            </tr>
+                        </table>
+                        
+{% endif %}                       
+</form>
+  </div>
+</div>
+</div>
+<br>  
+  </div>
+</div>
+ {%endblock%}

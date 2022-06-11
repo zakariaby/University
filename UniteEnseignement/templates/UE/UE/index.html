@@ -1,0 +1,59 @@
+{% extends "UE/RespoFiliere/index2.html" %}
+
+{% block content %}
+{% load static %}
+<div class="container">
+<style>
+th.sem1{
+  border: 1px solid black;
+  height: 50px;
+  text-align:center;
+  background-color:#54a4c4;
+ 
+}
+table{
+  border: 1px solid black; 
+}
+ table.tab{
+  width: 95%;
+  margin-left: 25px;
+  margin-top:50px;
+  
+}
+thead{
+  background-color:#ffa100;
+
+}
+</style>
+</head>
+<body>
+  <table class="tab">
+    
+    {% for ue in ues %}
+  <tr>
+    <th scope="row"class="sem1">{{sm.nomSemestre}}</th>
+    </tr>
+
+</table>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Code de l'UE</th>
+      <th scope="col">Nom de l'UE</th>
+      <th scope="col">Crédits UE</th>
+    </tr>
+  </thead>
+  <tbody>
+   <tr>
+      <th scope="row"><a href="{% url 'listerUE' ue.id %}">{{ue.codeUE}}</a></th>
+      <td>{{ue.nomUE}}</td>
+      <td style="color:beige;">{{ue.credit}}</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+
+  
+</table>
+</body>
+</div>
+{%endblock%}

@@ -1,0 +1,79 @@
+
+{% extends "Enseignant/index.html" %}
+
+{% block content %}
+{% load static %}
+<style>
+  table{
+    border: 1px solid black; 
+  }
+  thead{
+  background-color:#ffa100;
+
+}
+</style>
+<div class="container">
+<br>
+<br>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% for ec in ecs %}
+  
+<table class="table table-d">
+    <thead class="thead-warning">
+      <tr>
+        
+        <th scope="col">Code de l'EC:  &nbsp {{ec.codeEc}} </th>
+        <th scope="col">Nom de l'EC: &nbsp {{ec.nomEc}}</th>
+        <th scope="col">Coefficient de l'EC: &nbsp {{ec.coefficient}}</th>
+      </tr> 
+     
+    </thead>
+    <tbody>
+        <tr height="150">
+            <th scope="row">Objectif de l'EC</th>
+            <td></td>
+            
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">Competence visés</th>
+            <td></td>
+            
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">Prérequis</th>
+            <td></td>
+            
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">Contenus</th>
+            <td></td>
+           </tr> 
+           <tr>
+            <td>
+              <div class="col-md-2 col-md-offset-4">
+              <a href="{% url 'deleteEC' ec.id%}" type="submit" class="btn btn-dark"> <span
+              class="fa fa-send" style="color:#ffa100;">Supprimer</span> 
+                  
+              </a>
+              </div>
+            </td>
+            <td>
+              <div class="col-md-2 col-md-offset-4">
+              <a href="{% url 'editEC' ec.id%}" type="submit" class="btn btn-warning"> <span
+              class="fa fa-send" style="color:black;">Modifier</span> 
+                  
+              </a>
+              </div>
+            </td>
+
+          </tr>
+          
+</tbody> 
+</table>
+
+   {% endfor %}
+</div>
+{%endblock%}

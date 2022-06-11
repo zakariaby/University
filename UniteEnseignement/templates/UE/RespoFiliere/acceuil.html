@@ -1,0 +1,115 @@
+
+{% extends "UE/RespoFiliere/index.html" %}
+
+{% block content %}
+{% load static %}
+<style>
+  
+  .row{ background-color:#313c47;
+    padding-left: 100px;
+  }
+  img.module{
+        width:150px;
+        height:150px;
+        border-radius: 30px;
+        margin-right:50px;
+        max-height : 100%;
+        max-width : 100%;
+        border-color:rgb(215, 252, 252);
+      }
+    p{
+      color:aliceblue;
+    }
+</style>
+<div class ="container-fluid">
+ 
+  <div class="row">
+      <div class="col-md-2">
+        <div class="jumbotron">
+          <br>
+          <a href="{% url 'index1'%}">
+           <img class="module"
+            src="{% static 'img/ins.png'%}"  
+            class="w-300 mt-2 p-2 h-100"
+            alt="..."
+          />
+          </a>
+          <br><br>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <br><br>
+        <p>Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à une langue. Un texte n'a pas de longueur déterminée sauf dans le cas de poèmes à forme fixe comme le sonnet ou le haïku</p>
+      </div>
+  </div><br><br>
+  <div class="row">
+      <div class="col-md-2">
+        <div class="jumbotron">
+          <br>
+          <a href="{% url 'index2'%}">
+           <img class="module"
+            src="{% static 'img/form.png'%}"  
+            class="w-300 mt-2 p-2 h-100"
+            alt="..."
+          />
+          </a><br><br>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <br><br>
+        <p>Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à une langue. Un texte n'a pas de longueur déterminée sauf dans le cas de poèmes à forme fixe comme le sonnet ou le haïku</p>
+      </div>
+  </div><br><br>
+  <div class="row">
+      <div class="col-md-2">
+        <div class="jumbotron">
+          <br>
+          <a href="{% url 'index3'%}">
+           <img class="module"
+            src="{% static 'img/plann.png'%}"  
+            class="w-300 mt-2 p-2 h-100"
+            alt="..."
+          />
+          </a>
+          <br><br>
+        </div>
+      </div>
+    <div class="col-md-6">
+      <br><br>
+      <p>Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à une langue. Un texte n'a pas de longueur déterminée sauf dans le cas de poèmes à forme fixe comme le sonnet ou le haïku</p>
+    </div>
+    </div><br><br>
+  <div class="row">
+      <div class="col-md-2">
+        <div class="jumbotron">
+          <br>
+          <a href="{% url 'index4'%}">
+           <img class="module"
+            src="{% static 'img/result.png'%}"  
+            class="w-300 mt-2 p-2 h-100"
+            alt="..."
+          />
+          </a>
+          <br><br>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <br><br>
+        <p>Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à une langue. Un texte n'a pas de longueur déterminée sauf dans le cas de poèmes à forme fixe comme le sonnet ou le haïku</p>
+      </div>
+  </div>
+  <br> 
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>    
+   
+</div>
+
+
+{%endblock%}
