@@ -1,0 +1,233 @@
+{% extends 'theme/base.html' %} 
+{% load static %} 
+{% load humanize %} 
+{% block body_content %}
+
+<!-- Main Infos Section -->
+<div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4">
+  <!-- First Card -->
+  <div class="space-y-1.5 rounded-xl bg-blue-500 p-4 shadow-blue-400 shadow-md">
+    <div class="flex items-center justify-between w-full">
+      <h3 class="text-white font-bold text-lg">Professeurs</h3>
+      <span class="material-icons text-white">school</span>
+    </div>
+    <hr />
+    <h1 class="text-white font-extrabold text-5xl text-right">
+      {{ teachers.count }}
+    </h1>
+  </div>
+  <!--End First Card -->
+
+  <!-- Second Card -->
+  <div
+    class="space-y-1.5 rounded-xl bg-orange-500 p-4 shadow-blue-400 shadow-md"
+  >
+    <div class="flex items-center justify-between w-full">
+      <h3 class="text-white font-bold text-lg">Filieres</h3>
+      <span class="material-icons text-white">home</span>
+    </div>
+    <hr />
+    <h1 class="text-white font-extrabold text-5xl text-right">
+      {{ faculties.count }}
+    </h1>
+  </div>
+  <!--End Second Card -->
+
+  <!-- Third Card -->
+  <div
+    class="space-y-1.5 rounded-xl bg-green-500 p-4 shadow-blue-400 shadow-md"
+  >
+    <div class="flex items-center justify-between w-full">
+      <h3 class="text-white font-bold text-lg">Etudiants</h3>
+      <span class="material-icons text-white">person</span>
+    </div>
+    <hr />
+    <h1 class="text-white font-extrabold text-5xl text-right">
+      {{ students.count }}
+    </h1>
+  </div>
+  <!--End Third Card -->
+</div>
+<!-- End Main Info Section-->
+
+<hr class="my-3" />
+
+<div class="w-full my-3 flex items-center space-x-4 justify-start">
+  <a
+    href="{% url 'accounts:createStudentPage' %}"
+    class="px-3 py-1 flex items-center space-x-1 text-white bg-gray-800 rounded-md hover:bg-gray-700 cursor-pointer"
+  >
+    <span class="material-icons text-white">add</span>
+    <span class="text-semibold">Nouveau Etudiant</span>
+  </a>
+  <a
+    href="#"
+    class="px-3 py-1 flex items-center space-x-1 text-white bg-gray-800 rounded-md hover:bg-gray-700 cursor-pointer"
+  >
+    <span class="material-icons text-white">add</span>
+    <span class="text-semibold">Nouveau Professeur</span>
+  </a>
+  <a
+    href="#"
+    class="px-3 py-1 flex items-center space-x-1 text-white bg-gray-800 rounded-md hover:bg-gray-700 cursor-pointer"
+  >
+    <span class="material-icons text-white">add</span>
+    <span class="text-semibold">Nouvelle Filiere</span>
+  </a>
+  <a
+    href="#"
+    class="px-3 py-1 flex items-center space-x-1 text-white bg-gray-800 rounded-md hover:bg-gray-700 cursor-pointer"
+  >
+    <span class="material-icons text-white">add</span>
+    <span class="text-semibold">Nouveau Inscript</span>
+  </a>
+</div>
+
+
+
+<!-- Resume Section: Lists-->
+<!-- Enrollment List  -->
+<div class="relative overflow-x-auto my-6">
+  <h1 class="text-xl font-bold text-sky-700 my-2 bg-neutral-200 px-4 py-1.5 rounded-sm"> 10 Recents Inscriptions </h1>
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Etudiant</th>
+        <th scope="col" class="px-6 py-3">Niveau</th>
+        <th scope="col" class="px-6 py-3">Type de paiement</th>
+        <th scope="col" class="px-6 py-3">Active</th>
+        <th scope="col" class="px-6 py-3">Montant</th>
+        <th scope="col" class="px-6 py-3">Date</th>
+        <th scope="col" class="px-6 py-3">
+          <span class="sr-only">View</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+      >
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+        >
+          Alassane Tall
+        </th>
+        <td class="px-6 py-4">Master 2</td>
+        <td class="px-6 py-4">Annuel</td>
+        <td class="px-6 py-4">Oui</td>
+        <td class="px-6 py-4">120,000 XOF</td>
+        <td class="px-6 py-4">2020-08-26</td>
+
+        <td class="px-6 py-4 text-right">
+          <a
+            href="#"
+            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+            >Detail</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- End Enrollment List  -->
+
+
+<!-- Teachers List  -->
+<div class="relative overflow-x-auto my-6">
+  <h1 class="text-xl font-bold text-sky-700 my-2 bg-neutral-200 px-4 py-1.5 rounded-sm"> 10 Recents Profs </h1>
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Nom & Prenom</th>
+        <th scope="col" class="px-6 py-3">Faculte</th>
+        <th scope="col" class="px-6 py-3">Email</th>
+        <th scope="col" class="px-6 py-3">Tel</th>
+        <th scope="col" class="px-6 py-3">Disponibilite</th>
+        <th scope="col" class="px-6 py-3">Date arrivage</th>
+        <th scope="col" class="px-6 py-3">
+          <span class="sr-only">Edit</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+      >
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+        >
+          Djily Mbaye
+        </th>
+        <td class="px-6 py-4">Informatique</td>
+        <td class="px-6 py-4">djily@example.com</td>
+        <td class="px-6 py-4">+221 77 543 XX XX</td>
+        <td class="px-6 py-4">+2</td>
+        <td class="px-6 py-4">2008-04-22</td>
+        <td class="px-6 py-4 text-right">
+          <a
+            href="#"
+            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+            >Details</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--- End Teachers List -->
+
+
+<!-- Students List  -->
+<div class="relative overflow-x-auto my-6">
+  <h1 class="text-xl font-bold text-sky-700 my-2 bg-neutral-200 px-4 py-1.5 rounded-sm"> 10 Recents Etudiants </h1>
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Nom & Prenom</th>
+        <th scope="col" class="px-6 py-3">Nationalite</th>
+        <th scope="col" class="px-6 py-3">Niveau</th>
+        <th scope="col" class="px-6 py-3">Email</th>
+        <th scope="col" class="px-6 py-3">Tel</th>
+        <th scope="col" class="px-6 py-3">Sexe</th>
+        <th scope="col" class="px-6 py-3">Date arrivage</th>
+        <th scope="col" class="px-6 py-3">
+          <span class="sr-only">View</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+      >
+        <td class="px-6 py-4">Alassane Tall</td>
+        <td class="px-6 py-4">Senegalaise</td>
+        <td class="px-6 py-4">Master 2</td>
+        <td class="px-6 py-4">ala@example.com</td>
+        <td class="px-6 py-4">+221 77 439 XX XX</td>
+        <td class="px-6 py-4">Masculin</td>
+        <td class="px-6 py-4">2020-09-20</td>
+        <td class="px-6 py-4 text-right">
+          <a
+            href="#"
+            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+            >Details</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- End Student List  -->
+
+
+
+
+{% endblock body_content %}

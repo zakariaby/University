@@ -1,0 +1,40 @@
+{% load static %}
+
+<!-- Navbar -->
+
+<div class="w-full">
+  <!-- Navbar -->
+  <div
+    class="h-20 flex items-center p-2 bg-neutral-100 shadow-md shadow-sky-400 space-x-4 z-20"
+  >
+
+    <!-- SideNav Btn -->
+    <div class="w-10 h-10 flex items-center justify-center bg-sky-800 cursor-pointer hover:bg-sky-700 rounded-md">
+        <span class="material-icons text-white"> code </span>
+    </div>
+    <!-- End SideNav Btn -->
+
+    <!-- Search Form -->
+    <form action="" method="post" class="flex-grow h-auto">
+      {% csrf_token %}
+        <div class="flex space-x-2 items-center w-full justify-center rounded-md border-sky-700 border focus:shadow-md focus:shadow-sky-400 p-0" tabindex="0">
+            <input
+                type="text"
+                id="search"
+                name="search"
+                placeholder="Recherche..."
+                class="flex-grow border-none focus:outline-none bg-transparent px-3 py-2 rounded-l-md"
+            />
+            <button class="border-none bg-transparent outline-none py-2 w-20 flex items-center justify-center rounded-r-md bg-sky-800 hover:bg-sky-700" type="submit">
+                <span class="material-icons text-white"> search </span>
+            </button>
+        </div>
+    </form>
+    <!-- End Search Form -->
+    <a href="{% url 'accounts:logoutPage' %}" class="bg-sky-800 rounded-md py-2 px-3 text-white hover:bg-sky-700 flex items-center space-x-1">
+      <i class="material-icons text-white">logout</i>
+      <span class="text-white">Deconnexion</span>
+    </a>
+  </div>
+  <!-- End Navbar -->
+</div>

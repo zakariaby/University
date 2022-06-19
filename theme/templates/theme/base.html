@@ -1,0 +1,80 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		{% comment %} <link rel="icon" href="{% static 'dashboard/images/logo.png' %}" /> {% endcomment %}
+		<!-- Chart JS -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital@1&display=swap" rel="stylesheet">
+		<!-- Specific Page CSS goes here...  -->
+		{% block stylesheets %}{% endblock stylesheets %}
+		<title>
+			University | {% if title %} {{ title }} {% else %} Dashboard {% endif %}
+		</title>
+		{% tailwind_css %}
+	</head>
+
+	<body class="bg-neutral-100 font-serif leading-normal tracking-normal">
+
+		<!-- Layout Section -->
+		<div class="w-full flex items-start justify-start">
+
+			<!-- SideNav -->
+			{% include 'includes/sidebar.html' %}
+			<!-- End SideNav -->
+
+			<!-- Main Body -->
+			<div class="flex-grow bg-neutral-100">
+				{% include 'includes/navbar.html' %}
+
+				<!-- Content -->
+				<div class="w-full max-h-[calc(100vh-10vh)] overflow-y-auto">
+					<div class="container mx-auto w-full h-full my-4">
+
+						<!-- django-messages -->
+							{% if messages %}
+							<div class="row">
+							{% for message in messages %}
+								{% if message.tags == "success" %}
+									<div class="w-full p-4 rounded-md bg-green-600 my-2">
+										<div class="text-white text-center font-semibold"><b>{{message}}</b></div>
+									</div>
+								{% elif message.tags == "error" %}
+									<div class="w-full p-4 rounded-md bg-red-600 my-2">
+										<div class="text-white text-center font-semibold"><b>{{message}}</b></div>
+									</div>
+								{% elif message.tags == "warning" %}
+									<div class="w-full p-4 rounded-md bg-yellow-600 my-2">
+										<div class="text-white text-center font-semibold"><b>{{message}}</b></div>
+									</div>
+								{% endif %}
+							{% endfor %}
+							</div>
+						{% endif %}
+						<!-- End django-messages -->
+
+						{% block body_content %}
+
+						<!----- Your code will be added here...  -->
+						{% endblock body_content %}
+					</div>
+				</div>
+				<!-- End Content -->
+
+			</div>
+			<!-- End Main Body-->
+		</div>
+
+
+		
+	</body>
+
+	<!-- Specific Page JS goes here...  -->
+	{% block javascripts %}
+	
+	{% endblock javascripts %}
+</html>
