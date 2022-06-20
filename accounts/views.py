@@ -47,7 +47,7 @@ class StudentCreationView(LoginRequiredMixin, CreateView):
     fields = "__all__"
 
     def form_valid(self, form):
-        messages.success(self.request, "Agent {} a été ajouté avec succes !".format(form.instance.username))
+        messages.success(self.request, "{} {} a été ajouté avec succes !".format(form.instance.first_name, form.instance.last_name))
         return super().form_valid(form)
 
     def form_invalid(self, form):

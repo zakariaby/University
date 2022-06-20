@@ -1,19 +1,48 @@
 {% extends 'theme/base.html' %} 
 {% load static %} 
 {% load humanize %} 
-{% block stylesheets %} 
-{% comment %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% static 'unit/css/style.css' %}"
-/>
-{% endcomment %} 
-{% endblock stylesheets %} 
 
 {% block body_content %}
 
-<div>Unit</div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 grid-flow-row">
+
+    <!-- Add Facutlty Card -->
+      <a href="{% url 'unit:facultyCreationPage' %}" class="w-full h-auto rounded-md bg-sky-800 hover:bg-sky-700 shadow-md shadow-sky-600 cursor-pointer block">
+        <div class="w-full h-full flex flex-col space-y-1 items-center justify-center p-4">
+            <span class="material-icons text-white text-7xl">add</span>
+            <h5 class="font-extrabold text-white text-lg">Ajouter une nouvelle filiere</h5>
+        </div>
+      </a>
+    <!-- End Faculty Card -->
+
+    {% for faculty in faculties %}
+      <!-- Single Faculty Card -->
+      <a href="!#" class="w-full h-auto rounded-md bg-sky-800 hover:bg-sky-700 shadow-md shadow-sky-600 cursor-pointer block">
+        <div class="w-full h-full flex flex-col space-y-1 items-center justify-center p-4">
+            <div class="flex space-x-3 justify-between items-center">
+              <span class="material-icons text-white text-3xl block">account_tree</span>
+              <h3 class="text-xl font-extrabold text-white ">{{ faculty.name }}</h3>
+            </div>
+            <div class="grid grid-cols-3 space-x-4 items-center mx-auto">
+                <div class="flex flex-col space-y-1">
+                    <span class="material-icons block text-neutral-300 font-bold">person</span>
+                    <h4 class="text-sm text-neutral-300">Profs {{ faculty.tc_faculty.count }}</h4>
+                </div>
+                <div class="flex flex-col space-y-1">
+                  <span class="material-icons block text-neutral-300 font-bold">person</span>
+                  <h4 class="text-sm text-neutral-300">Etud. {{ faculty.st_facutly.count }}</h4>
+              </div>
+              <div class="flex flex-col space-y-1">
+                <span class="material-icons block text-neutral-300 font-bold">person</span>
+                <h4 class="text-sm text-neutral-300">Profs {{ faculty.tc_faculty.count }}</h4>
+            </div>
+            </div>
+        </div>
+      </a>
+      <!-- End Single Faculty Card -->
+    {% endfor %}
+
+  </div>
 
 {% endblock body_content %} 
 

@@ -1,0 +1,42 @@
+{% extends 'theme/base.html' %}
+
+{% block body_content %}
+
+    <div class="w-full h-auto">
+
+        <!-- Create User account form -->
+        <form action={% url 'unit:facultyCreationPage' %} method="post" class="flex flex-col space-y-2 w-full md:w-10/12 lg:w-8/12 rounded-md border border-sky-200 p-4">
+            {% csrf_token %}
+    
+            <h1 class="text-5xl py-2 font-light">Ajouter une nouvelle faculte</h1>
+            <hr />
+    
+            <div class="w-full flex flex-col space-y-2 justify-center">
+                <label for="username" class="">Nom de la Faculte</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="rounded-md outline-none px-4 py-1.5 border-sky-700 focus:border-sky-800 appearance-none focus:outline-none bg-neutral-100 focus:bg-white"
+                />
+            </div>
+
+            <div class="w-full mt-4 mb-2 flex justify-start">
+                <button
+                    type="submit"
+                    class="flex items-center justify-center space-x-4 rounded-md bg-sky-800 text-white py-2 px-8 text-center hover:bg-sky-700"
+                >
+                <i class="material-icons">add</i>
+                    <span class="text-neutral-100 font-bold">
+                    Creer
+                    </span>
+                </button>
+            </div>
+
+        </form>
+        <!--- End Create User account form-->
+
+    </div>
+    
+
+{% endblock body_content %}
