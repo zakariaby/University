@@ -9,6 +9,8 @@ SEMESTER = (
 
 class Faculty(models.Model):
     name = models.CharField(max_length=100, unique=True, blank=False)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.name
@@ -20,6 +22,9 @@ class Lecture(models.Model):
     hours = models.IntegerField()
     semester = models.CharField(max_length=70, choices=SEMESTER, default="")
 
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self) -> str:
         return "{}".format(self.name)
 
@@ -29,6 +34,9 @@ class Grade(models.Model):
     lecture = models.ForeignKey(Lecture, on_delete=models.DO_NOTHING, null=True)
     mark = models.IntegerField()
     appreciation = models.TextField()
+
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
     
 
     def __str__(self) -> str:

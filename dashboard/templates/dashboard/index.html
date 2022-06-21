@@ -91,7 +91,7 @@
   <h1 class="text-xl font-bold text-sky-700 my-2 bg-neutral-200 px-4 py-1.5 rounded-sm"> 10 Recents Inscriptions </h1>
   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead
-      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      class="text-xs text-gray-700 uppercase bg-gray-50"
     >
       <tr>
         <th scope="col" class="px-6 py-3">Etudiant</th>
@@ -106,89 +106,50 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-      >
-        <th
-          scope="row"
-          class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-        >
-          Alassane Tall
-        </th>
-        <td class="px-6 py-4">Master 2</td>
-        <td class="px-6 py-4">Annuel</td>
-        <td class="px-6 py-4">Oui</td>
-        <td class="px-6 py-4">120,000 XOF</td>
-        <td class="px-6 py-4">2020-08-26</td>
-
-        <td class="px-6 py-4 text-right">
-          <a
-            href="#"
-            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-            >Detail</a
+      {% if enrollments.count > 0 %}
+        {% for enrollment in enrollments %}
+          <tr
+            class="bg-white border-b hover:bg-gray-50"
           >
-        </td>
-      </tr>
+            <th
+              scope="row"
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+            >
+              {{ enrollment.student.first_name }} {{ enrollment.student.last_name }}
+            </th>
+            <td class="px-6 py-4">{{ enrollment.student.level }}</td>
+            <td class="px-6 py-4">{{ enrollment.payment_status }}</td>
+            <td class="px-6 py-4">{{ enrollment.active|yesno:"Active,Desactive" }}</td>
+            <td class="px-6 py-4">{{ enrollment.amount|floatformat:0|intcomma }} F.CFA</td>
+            <td class="px-6 py-4">{{ enrollment.created_at|date:"SHORT_DATE_FORMAT" }}</td>
+
+            <td class="px-6 py-4 text-right">
+              <a
+                href="#"
+                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                >Detail</a
+              >
+            </td>
+          </tr>
+        {% endfor %}
+
+        {% else %}
+          <tr>
+            <td class="px-6 py-4">Empty</td>
+          </tr>
+      {% endif %}
+      
     </tbody>
   </table>
 </div>
 <!-- End Enrollment List  -->
 
-
-<!-- Teachers List  -->
-<div class="relative overflow-x-auto my-6">
-  <h1 class="text-xl font-bold text-sky-700 my-2 bg-neutral-200 px-4 py-1.5 rounded-sm"> 10 Recents Profs </h1>
-  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead
-      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-    >
-      <tr>
-        <th scope="col" class="px-6 py-3">Nom & Prenom</th>
-        <th scope="col" class="px-6 py-3">Faculte</th>
-        <th scope="col" class="px-6 py-3">Email</th>
-        <th scope="col" class="px-6 py-3">Tel</th>
-        <th scope="col" class="px-6 py-3">Disponibilite</th>
-        <th scope="col" class="px-6 py-3">Date arrivage</th>
-        <th scope="col" class="px-6 py-3">
-          <span class="sr-only">Edit</span>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-      >
-        <th
-          scope="row"
-          class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-        >
-          Djily Mbaye
-        </th>
-        <td class="px-6 py-4">Informatique</td>
-        <td class="px-6 py-4">djily@example.com</td>
-        <td class="px-6 py-4">+221 77 543 XX XX</td>
-        <td class="px-6 py-4">+2</td>
-        <td class="px-6 py-4">2008-04-22</td>
-        <td class="px-6 py-4 text-right">
-          <a
-            href="#"
-            class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-            >Details</a
-          >
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<!--- End Teachers List -->
-
-
 <!-- Students List  -->
 <div class="relative overflow-x-auto my-6">
   <h1 class="text-xl font-bold text-sky-700 my-2 bg-neutral-200 px-4 py-1.5 rounded-sm"> 10 Recents Etudiants </h1>
-  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+  <table class="w-full text-sm text-left text-gray-500">
     <thead
-      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      class="text-xs text-gray-700 uppercase bg-gray-50"
     >
       <tr>
         <th scope="col" class="px-6 py-3">Nom & Prenom</th>
@@ -204,16 +165,82 @@
       </tr>
     </thead>
     <tbody>
+      {% if students.count > 0 %}
+        {% for student in students %}
+        <tr
+            class="bg-white border-b"
+          >
+          <td class="px-6 py-4">{{ student.first_name }} {{ student.last_name }}</td>
+          <td class="px-6 py-4">{{ student.nationality }}</td>
+          <td class="px-6 py-4">
+            {% if student.level == "first_year" %} 1ere Annee 
+            {% elif student.level == "second_year" %} 2eme Annee
+            {% elif student.level == "third_year" %} Licence
+            {% elif student.level == "fourth_year" %} Master 1
+            {% else %} Master 2
+            {% endif %}
+          </td>          <td class="px-6 py-4">{{ student.email }}</td>
+          <td class="px-6 py-4">{{ student.phone }}</td>
+            
+          <td class="px-6 py-4">{% if student.sexe == "male" %} M {% else %} F {% endif %}</td>
+          <td class="px-6 py-4">{{ student.created_at|date:"SHORT_DATE_FORMAT" }}</td>
+          <td class="px-6 py-4 text-right">
+            <a
+              href="#"
+              class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+              >Details</a
+            >
+          </td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td class="px-6 py-4">Empty</td>
+        </tr>
+      {% endif %}
+      
+    </tbody>
+  </table>
+</div>
+<!-- End Student List  -->
+
+
+<!-- Teachers List  -->
+<div class="relative overflow-x-auto my-6">
+  <h1 class="text-xl font-bold text-sky-700 my-2 bg-neutral-200 px-4 py-1.5 rounded-sm"> 10 Recents Profs </h1>
+  <table class="w-full text-sm text-left text-gray-500">
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Nom & Prenom</th>
+        <th scope="col" class="px-6 py-3">Faculte</th>
+        <th scope="col" class="px-6 py-3">Email</th>
+        <th scope="col" class="px-6 py-3">Tel</th>
+        <th scope="col" class="px-6 py-3">Disponibilite</th>
+        <th scope="col" class="px-6 py-3">Date arrivage</th>
+        <th scope="col" class="px-6 py-3">
+          <span class="sr-only">Edit</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+    {% if teachers.count > 0 %}
+      {% for teacher in teachers %}
       <tr
-        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        class="bg-white border-b border-neutral-300"
       >
-        <td class="px-6 py-4">Alassane Tall</td>
-        <td class="px-6 py-4">Senegalaise</td>
-        <td class="px-6 py-4">Master 2</td>
-        <td class="px-6 py-4">ala@example.com</td>
-        <td class="px-6 py-4">+221 77 439 XX XX</td>
-        <td class="px-6 py-4">Masculin</td>
-        <td class="px-6 py-4">2020-09-20</td>
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+        >
+          {{ teacher.first_name }} {{ teacher.last_name }}
+        </th>
+        <td class="px-6 py-4">{{ teacher.faculty.name }}</td>
+        <td class="px-6 py-4">{{ teacher.email }}</td>
+        <td class="px-6 py-4">{{ teacher.phone }}</td>
+        <td class="px-6 py-4">+{{ teacher.availability }}</td>
+        <td class="px-6 py-4">{{ teacher.created_at|date:"SHORT_DATE_FORMAT" }}</td>
         <td class="px-6 py-4 text-right">
           <a
             href="#"
@@ -222,12 +249,15 @@
           >
         </td>
       </tr>
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td class="px-6 py-4">Empty</td>
+      </tr>
+    {% endif %}
     </tbody>
   </table>
 </div>
-<!-- End Student List  -->
-
-
-
+<!--- End Teachers List -->
 
 {% endblock body_content %}
