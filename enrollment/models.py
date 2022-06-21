@@ -13,5 +13,8 @@ class Enrollment(models.Model):
     active = models.BooleanField(default=True)
     amount = models.BigIntegerField()
 
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self) -> str:
         return "Enrollment: {} {}".format(self.student.first_name, self.student.last_name)

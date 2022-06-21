@@ -6,7 +6,7 @@ app_name = 'enrollment'
 urlpatterns = [
     # Vente Routers
     path('', enrol_views.EnrollmentView.as_view(), name="indexPage"),
-
+    path('add/', enrol_views.EnrollmentCreateView.as_view(), name="createEnrollmentPage"),
     # path('supprimer_plusieur/', v_views.multiple_delete_vente, name='multipleDeleteVentePage'),
     # path('detail/<int:pk>/<int:day>/', v_views.vente_detail, name='venteDetailPage'),
 ]

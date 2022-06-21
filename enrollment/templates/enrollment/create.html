@@ -1,0 +1,71 @@
+{% extends 'theme/base.html' %}
+
+{% block body_content %}
+
+    <div class="w-full h-auto">
+
+        <!-- Create Student form-->
+        <form action={% url 'enrollment:createEnrollmentPage' %} method="post" class="flex flex-col space-y-2 w-full lg:flex-grow rounded-md border border-sky-200 p-4">
+            {% csrf_token %}
+            
+            <h1 class="text-xl font-light ">
+                Fiche d'inscription
+            </h1>
+    
+            <hr />
+    
+            <div class="w-full flex flex-col space-y-2 justify-center">
+                <label for="student" class="block mb-2 text-sm font-medium text-gray-900">Choisir un Etudiant</label>
+                <select id="student" name="student" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    {% for student in students %}
+                        <option value={{ student.pk }}>{{ student.first_name }} {{ student.last_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            
+            <div class="grid gap-6 mb-6 lg:grid-cols-2">
+                <div>
+                    <label for="payment_status" class="block mb-2 text-sm font-medium text-gray-900">Mode Paiement</label>
+                    <select name="payment_status" id="payment_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="full_year_payment">Paiement Annuel</option>
+                        <option value="half_year_payment">Paiement Semestriel</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="amount" class="block mb-2 text-sm font-medium text-gray-900">Montant</label>
+                    <input type="number" id="amount" name="amount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required="">
+                </div>
+               
+                <!-- Active Paymane Field -->
+                <div class="flex items-center space-x-3">
+                    <label for="Active">Active</label>
+                    <input
+                        id="active"
+                        name="active"
+                        type="checkbox"
+                        class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                    />
+                </div>
+
+            </div>
+
+            <div class="w-full mt-4 mb-2 flex justify-start">
+                <button
+                    type="submit"
+                    class="flex items-center justify-center space-x-4 rounded-md bg-sky-800 text-white py-2 px-8 text-center hover:bg-sky-700"
+                >
+                <i class="material-icons">add</i>
+                    <span class="text-neutral-100 font-bold">
+                    Creer
+                    </span>
+                </button>
+            </div>
+            
+        </form>
+        <!--- End Create Student form-->
+
+    </div>
+    
+
+{% endblock body_content %}
