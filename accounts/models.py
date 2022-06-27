@@ -26,6 +26,11 @@ CONDUCTS = [
     ("red_flag", "Insupportable"),
 ]
 
+TEACHER_STATUS = [
+    ("full_time", "Permanent"),
+    ("part_time", "Non Permanent")
+]
+
 
 class Teacher(models.Model):
     user = models.OneToOneField(
@@ -36,9 +41,10 @@ class Teacher(models.Model):
     phone = models.CharField(max_length=20, blank=False)
     address = models.CharField(max_length=60, blank=False)
     available = models.BooleanField(default=True)
-    count_available = models.IntegerField(default=0)
+    sexe = models.CharField(max_length=10, choices=GENDER, default="")
+    status = models.CharField(max_length=100, choices=TEACHER_STATUS, default="")
+    nationality = models.CharField(max_length=60, blank=True)
     email = models.EmailField(max_length=60, blank=False, unique=True)
-    conduct = models.CharField(max_length=20, choices=CONDUCTS, default="")
     ended_at = models.DateTimeField()
     photo = models.ImageField(upload_to="images/teachers/", default='teacher.png')
 
@@ -55,6 +61,7 @@ class Student(models.Model):
     faculty = models.ForeignKey(to="unit.Faculty", on_delete=models.CASCADE, null=True, related_name="st_facutly")
     first_name = models.CharField(max_length=100, blank=False)
     last_name = models.CharField(max_length=100, blank=False)
+    conduct = models.CharField(max_length=20, choices=CONDUCTS, default="")
     level = models.CharField(max_length=70, choices=LEVEL, default="")
     ended_at = models.DateTimeField()
     nationality = models.CharField(max_length=60, blank=True)

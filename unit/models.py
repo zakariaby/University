@@ -18,6 +18,7 @@ class Faculty(models.Model):
 
 class Lecture(models.Model):
     name = models.CharField(max_length=100, unique=True, blank=False)
+    teacher = models.ForeignKey("accounts.Teacher", on_delete=models.DO_NOTHING, null=True)
     credit = models.IntegerField()
     hours = models.IntegerField()
     semester = models.CharField(max_length=70, choices=SEMESTER, default="")

@@ -51,8 +51,7 @@ class StudentCreationView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        print(form.errors)
-        messages.error(self.request, "Un agent existe avec ce nom d'utilisateur !")
+        messages.error(self.request, "Un etudiant existe avec ce nom d'utilisateur !")
         return super().form_invalid(form)
 
     def get_success_url(self):
@@ -62,7 +61,7 @@ class StudentCreationView(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context["users"] = User.objects.all()
         context["faculties"] = Faculty.objects.all()
-        context["title"] = "Creation-Utilisateur"
+        context["title"] = "Creation-Etudiant"
         return context
     
 
@@ -103,6 +102,29 @@ class StudentDeleteView(LoginRequiredMixin, DeleteView):
         u_user = User.objects.get(pk=self.kwargs["pk"])
         messages.success(self.request, "{} supprimé avec success.".format(u_user)) 
         return super().form_valid(form)
+
+class TeacherCreationView(LoginRequiredMixin, CreateView):
+    template_name = 'accounts/teachers/create.html'
+    model = Teacher
+    fields = "__all__"
+
+    def form_valid(self, form):
+        messages.success(self.request, "{} {} a été ajouté avec succes !".format(form.instance.first_name, form.instance.last_name))
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "Un prof existe avec ce nom d'utilisateur !")
+        return super().form_invalid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard:homePage')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["users"] = User.objects.all()
+        context["faculties"] = Faculty.objects.all()
+        context["title"] = "Creation-Prof"
+        return context
     
 
 def change_password_view(request, pk):

@@ -30,3 +30,7 @@ ADD . /project/
 
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
+# Install packages from json->package file in theme
+RUN cd theme/static_src/
+RUN npm install 
+RUN cd ../../

@@ -61,7 +61,7 @@
     <span class="text-semibold">Nouveau Etudiant</span>
   </a>
   <a
-    href="#"
+    href="{% url 'accounts:createTeacherPage' %}"
     class="px-3 py-1 flex items-center space-x-1 text-white bg-gray-800 rounded-md hover:bg-gray-700 cursor-pointer"
   >
     <span class="material-icons text-white">add</span>
@@ -232,14 +232,14 @@
       >
         <th
           scope="row"
-          class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
         >
           {{ teacher.first_name }} {{ teacher.last_name }}
         </th>
         <td class="px-6 py-4">{{ teacher.faculty.name }}</td>
         <td class="px-6 py-4">{{ teacher.email }}</td>
         <td class="px-6 py-4">{{ teacher.phone }}</td>
-        <td class="px-6 py-4">+{{ teacher.availability }}</td>
+        <td class="px-6 py-4">{{ teacher.available|yesno:"OUI, NON" }}</td>
         <td class="px-6 py-4">{{ teacher.created_at|date:"SHORT_DATE_FORMAT" }}</td>
         <td class="px-6 py-4 text-right">
           <a
