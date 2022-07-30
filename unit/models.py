@@ -6,19 +6,19 @@ SEMESTER = (
     ('second_semester', 'Semestre 2'),
 )
 
-
-class Faculty(models.Model):
-    name = models.CharField(max_length=100, unique=True, blank=False)
-    created_at = models.DateTimeField(auto_now=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self) -> str:
-        return self.name
+PROGRAM = (
+    ('mic', 'Multimedia'),
+    ('tr', 'Telecom. & Reseaux'),
+)
 
 
 class Lecture(models.Model):
+    """
+        Lecture are the content of every Factulty (UE)
+    """
     name = models.CharField(max_length=100, unique=True, blank=False)
     teacher = models.ForeignKey("accounts.Teacher", on_delete=models.DO_NOTHING, null=True)
+    program = models.CharField(max_length=10, choices=PROGRAM, default="tr")
     credit = models.IntegerField()
     hours = models.IntegerField()
     semester = models.CharField(max_length=70, choices=SEMESTER, default="")
@@ -29,6 +29,17 @@ class Lecture(models.Model):
     def __str__(self) -> str:
         return "{}".format(self.name)
 
+class Faculty(models.Model): # Facutlies __repr__ UE
+    '''
+        Each Faculty (UE) has its name and will contains Lectures
+    '''
+    name = models.CharField(max_length=100, unique=True, blank=False)
+    lectures = models.ManyToManyField(Lecture)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.name
 
 class Grade(models.Model):
     student = models.ForeignKey(to="accounts.Student", on_delete=models.CASCADE, null=True)

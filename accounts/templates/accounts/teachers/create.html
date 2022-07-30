@@ -94,14 +94,6 @@
                     <input type="text" id="last_name" name="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="" required="">
                 </div>
                 <div>
-                    <label for="faculty" class="block mb-2 text-sm font-medium text-gray-900">Faculte</label>
-                    <select name="faculty" id="faculty" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        {% for faculty in faculties %}
-                            <option value={{ faculty.pk }}>{{ faculty.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div>
                     <label for="nationality" class="block mb-2 text-sm font-medium text-gray-900">Nationalite</label>
                     <input type="text" id="nationality" name="nationality" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Senegalaise" required="">
                 </div>

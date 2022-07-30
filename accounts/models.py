@@ -1,8 +1,9 @@
 from distutils.command.upload import upload
+from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
-# from django.dispatch import receiver
-# from django.db.models.signals import post_delete, post_save
+
+from unit.models import PROGRAM
 
 # Create your models here.
 
@@ -19,25 +20,21 @@ LEVEL = [
     ('fifth_year', 'Master 2'),
 ]
 
-CONDUCTS = [
-    ("good", "Bonne"),
-    ("bad", "Mauvaise"),
-    ("yellow_flag", "Rectifiable"),
-    ("red_flag", "Insupportable"),
-]
-
 TEACHER_STATUS = [
     ("full_time", "Permanent"),
     ("part_time", "Non Permanent")
 ]
 
+PROGRAM = [
+    ("mic", 'Multimedia'),
+    ("tr", 'Telecom. & Reseaux')
+]
 
 class Teacher(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, null=True, related_name="teacher")
     first_name = models.CharField(max_length=100, blank=False)
     last_name = models.CharField(max_length=100, blank=False)
-    faculty = models.ForeignKey(to="unit.Faculty", on_delete=models.CASCADE, null=True, related_name="tc_faculty")
     phone = models.CharField(max_length=20, blank=False)
     address = models.CharField(max_length=60, blank=False)
     available = models.BooleanField(default=True)
@@ -58,10 +55,9 @@ class Teacher(models.Model):
 class Student(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, null=True, related_name="student")
-    faculty = models.ForeignKey(to="unit.Faculty", on_delete=models.CASCADE, null=True, related_name="st_facutly")
+    program = models.CharField(max_length=100, choices=PROGRAM, default="")
     first_name = models.CharField(max_length=100, blank=False)
     last_name = models.CharField(max_length=100, blank=False)
-    conduct = models.CharField(max_length=20, choices=CONDUCTS, default="")
     level = models.CharField(max_length=70, choices=LEVEL, default="")
     ended_at = models.DateTimeField()
     nationality = models.CharField(max_length=60, blank=True)
@@ -78,12 +74,24 @@ class Student(models.Model):
         return 'St: {} {}'.format(self.first_name, self.last_name)
 
 
-# @receiver(post_save, sender=User)
-# def create_default_userprofile(sender, instance, created, **kwargs):
-#     if created:
-#         UserProfile.objects.create(user=instance)
+class Staff(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, null=True, related_name="staff")
+    first_name = models.CharField(max_length=100, blank=False)
+    last_name = models.CharField(max_length=100, blank=False)
+    phone = models.CharField(max_length=20, blank=False)
+    address = models.CharField(max_length=60, blank=False)
+    available = models.BooleanField(default=True)
+    sexe = models.CharField(max_length=10, choices=GENDER, default="")
+    nationality = models.CharField(max_length=60, blank=True)
+    email = models.EmailField(max_length=60, blank=False, unique=True)
+    position = models.CharField(max_length=100)
+    ended_at = models.DateTimeField()
+    photo = models.ImageField(upload_to="images/staff/", default='staff.png')
 
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-# @receiver(post_save, sender=User)
-# def save_default_userprofile(sender, instance, **kwargs):
-#     instance.shop_user_related.save()
+    def __str__(self):
+        return 'Tc: {} {}'.format(self.first_name, self.last_name)
+

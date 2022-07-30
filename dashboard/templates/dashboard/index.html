@@ -23,7 +23,7 @@
     class="space-y-1.5 rounded-xl bg-orange-500 p-4 shadow-blue-400 shadow-md"
   >
     <div class="flex items-center justify-between w-full">
-      <h3 class="text-white font-bold text-lg">Filieres</h3>
+      <h3 class="text-white font-bold text-lg">UE</h3>
       <span class="material-icons text-white">home</span>
     </div>
     <hr />
@@ -58,28 +58,21 @@
     class="px-3 py-1 flex items-center space-x-1 text-white bg-gray-800 rounded-md hover:bg-gray-700 cursor-pointer"
   >
     <span class="material-icons text-white">add</span>
-    <span class="text-semibold">Nouveau Etudiant</span>
+    <span class="text-semibold">Etudiant</span>
   </a>
   <a
     href="{% url 'accounts:createTeacherPage' %}"
     class="px-3 py-1 flex items-center space-x-1 text-white bg-gray-800 rounded-md hover:bg-gray-700 cursor-pointer"
   >
     <span class="material-icons text-white">add</span>
-    <span class="text-semibold">Nouveau Professeur</span>
-  </a>
-  <a
-    href="{% url 'unit:facultyCreationPage' %}"
-    class="px-3 py-1 flex items-center space-x-1 text-white bg-gray-800 rounded-md hover:bg-gray-700 cursor-pointer"
-  >
-    <span class="material-icons text-white">add</span>
-    <span class="text-semibold">Nouvelle Filiere</span>
+    <span class="text-semibold">Professeur</span>
   </a>
   <a
     href="{% url 'enrollment:createEnrollmentPage' %}"
     class="px-3 py-1 flex items-center space-x-1 text-white bg-gray-800 rounded-md hover:bg-gray-700 cursor-pointer"
   >
     <span class="material-icons text-white">add</span>
-    <span class="text-semibold">Nouveau Inscript</span>
+    <span class="text-semibold">Staff</span>
   </a>
 </div>
 
@@ -170,7 +163,19 @@
         <tr
             class="bg-white border-b"
           >
-          <td class="px-6 py-4">{{ student.first_name }} {{ student.last_name }}</td>
+          <td>
+            <div class="d-flex align-items-center px-2">
+              <img
+                  src="{% static 'images/user.png' %}"
+                  alt=""
+                  style="width: 35px; height: 35px"
+                  class="rounded-circle"
+                  />
+              <div class="ms-3">
+                <p class="fw-bold mb-1">{{ student.first_name }} {{ student.last_name }}</p>
+              </div>
+            </div>
+          </td>
           <td class="px-6 py-4">{{ student.nationality }}</td>
           <td class="px-6 py-4">
             {% if student.level == "first_year" %} 1ere Annee 

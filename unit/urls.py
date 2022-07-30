@@ -7,6 +7,5 @@ urlpatterns = [
     # Vente Routers
     path('', v_views.UnitView.as_view(), name="indexPage"),
     path('faculty/add/', v_views.FacultyCreationView.as_view(), name="facultyCreationPage"),
-    # path('supprimer_plusieur/', v_views.multiple_delete_vente, name='multipleDeleteVentePage'),
-    # path('detail/<int:pk>/<int:day>/', v_views.vente_detail, name='venteDetailPage'),
+    path('lecture/add/', v_views.LectureCreationView.as_view(), name="lectureCreationPage"),
 ]
