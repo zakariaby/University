@@ -857,10 +857,6 @@ select {
   margin-bottom: 0.25rem;
 }
 
-.mb-0 {
-  margin-bottom: 0px;
-}
-
 .mb-6 {
   margin-bottom: 1.5rem;
 }
@@ -945,6 +941,10 @@ select {
   height: 1.5rem;
 }
 
+.h-28 {
+  height: 7rem;
+}
+
 .max-h-\[calc\(100vh-10vh\)\] {
   max-height: calc(100vh - 10vh);
 }
@@ -995,6 +995,10 @@ select {
 
 .w-6 {
   width: 1.5rem;
+}
+
+.w-28 {
+  width: 7rem;
 }
 
 .flex-grow {
@@ -1293,6 +1297,11 @@ select {
 .object-contain {
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .p-2 {
@@ -1706,6 +1715,10 @@ select {
     width: 83.333333%;
   }
 
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1737,6 +1750,14 @@ select {
   }
 
   .lg\:w-8\/12 {
+    width: 66.666667%;
+  }
+
+  .lg\:w-1\/3 {
+    width: 33.333333%;
+  }
+
+  .lg\:w-2\/3 {
     width: 66.666667%;
   }
 

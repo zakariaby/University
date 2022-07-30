@@ -1,3 +1,4 @@
+from typing import Optional
 from django.conf import settings
 from django.contrib.auth import logout
 from django.http.response import HttpResponseRedirect
@@ -12,13 +13,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-# from django.views.generic import View
 from django.views.generic.edit import DeleteView, FormView, UpdateView
+from django.views.generic.detail import DetailView
 from unit.models import Faculty
 
-# from accounts.forms import UserProfileForm
 # from accounts.resources import ProductExcel, VenteExcel, ClientExcel
-
 
 
 class AppLoginView(LoginView):
@@ -47,23 +46,40 @@ class StudentCreationView(LoginRequiredMixin, CreateView):
     fields = "__all__"
 
     def form_valid(self, form):
-        messages.success(self.request, "{} {} a été ajouté avec succes !".format(form.instance.first_name, form.instance.last_name))
+        messages.success(self.request, "{} {} a été ajouté avec succes !".format(
+            form.instance.first_name, form.instance.last_name))
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, "Un etudiant existe avec ce nom d'utilisateur !")
+        messages.error(
+            self.request, "Un etudiant existe avec ce nom d'utilisateur !")
         return super().form_invalid(form)
 
     def get_success_url(self):
         return reverse_lazy('accounts:profilePage')
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["users"] = User.objects.all()
         context["faculties"] = Faculty.objects.all()
         context["title"] = "Creation-Etudiant"
         return context
-    
+
+
+class StudentDetailView(DetailView):
+    model = Student
+    template_name: str = "accounts/students/detail.html"
+    context_object_name: Optional[str] = "student"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Detail"
+        return context
+
+    def get_queryset(self):
+        self.student = Student.objects.filter(pk=self.kwargs["pk"])
+        return self.student
+
 
 class StudentUpdateView(LoginRequiredMixin, UpdateView):
 
@@ -73,7 +89,8 @@ class StudentUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         u_user = Student.objects.get(pk=self.kwargs["pk"])
-        messages.success(self.request, 'Modifications enregistré avec succès pour {}'.format(u_user)) 
+        messages.success(
+            self.request, 'Modifications enregistré avec succès pour {}'.format(u_user))
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -84,8 +101,8 @@ class StudentUpdateView(LoginRequiredMixin, UpdateView):
         u_user = Student.objects.get(pk=self.kwargs["pk"])
         context["title"] = "Modification-{}".format(u_user)
         return context
-    
-    
+
+
 class StudentDeleteView(LoginRequiredMixin, DeleteView):
 
     model = Student
@@ -100,8 +117,10 @@ class StudentDeleteView(LoginRequiredMixin, DeleteView):
 
     def form_valid(self, form):
         u_user = User.objects.get(pk=self.kwargs["pk"])
-        messages.success(self.request, "{} supprimé avec success.".format(u_user)) 
+        messages.success(
+            self.request, "{} supprimé avec success.".format(u_user))
         return super().form_valid(form)
+
 
 class TeacherCreationView(LoginRequiredMixin, CreateView):
     template_name = 'accounts/teachers/create.html'
@@ -109,23 +128,25 @@ class TeacherCreationView(LoginRequiredMixin, CreateView):
     fields = "__all__"
 
     def form_valid(self, form):
-        messages.success(self.request, "{} {} a été ajouté avec succes !".format(form.instance.first_name, form.instance.last_name))
+        messages.success(self.request, "{} {} a été ajouté avec succes !".format(
+            form.instance.first_name, form.instance.last_name))
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, "Un prof existe avec ce nom d'utilisateur !")
+        messages.error(
+            self.request, "Un prof existe avec ce nom d'utilisateur !")
         return super().form_invalid(form)
 
     def get_success_url(self):
         return reverse_lazy('dashboard:homePage')
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["users"] = User.objects.all()
         context["faculties"] = Faculty.objects.all()
         context["title"] = "Creation-Prof"
         return context
-    
+
 
 def change_password_view(request, pk):
     u_user = User.objects.get(pk=pk)
@@ -135,14 +156,17 @@ def change_password_view(request, pk):
         if form.is_valid():
             old_password = form.cleaned_data.get('ancient_pwd')
             if not u_user.check_password(old_password):
-                messages.error(request, "L'ancien mot de passe ne correspond pas")
+                messages.error(
+                    request, "L'ancien mot de passe ne correspond pas")
                 return redirect(reverse('accounts:passwordChangePage', args=(pk,)))
             if form.cleaned_data.get('new_password') != form.cleaned_data.get('new_confirmation_password'):
-                messages.error(request, "Vos mot de passe ne correspondent pas.")
+                messages.error(
+                    request, "Vos mot de passe ne correspondent pas.")
                 return redirect(reverse('accounts:passwordChangePage', args=(pk,)))
             u_user.set_password(form.cleaned_data.get('new_password'))
             u_user.save()
-            messages.success(request, "Mot de Passe modifié avec succès pour {}.".format(u_user))
+            messages.success(
+                request, "Mot de Passe modifié avec succès pour {}.".format(u_user))
             return redirect(reverse('accounts:profilePage'))
     form = PasswordForm()
     context = {
@@ -150,80 +174,12 @@ def change_password_view(request, pk):
         "title": "Mot de Passe-{}".format(u_user)
     }
     return render(request, 'dashboard/users/password_change.html', context)
-    
-
-
-# class StudentProfileView(View, LoginRequiredMixin):
-#     userprofile = None 
-
-#     def dispatch(self, request, *args, **kwargs):
-#         self.userprofile, _ = UserProfile.objects.get_or_create(user=request.user)
-#         return super(StudentProfileView, self).dispatch(request, *args, **kwargs)
-
-#     def get(self, request):
-#         students = Student.objects.all()
-#         context = {
-#             'shops': students,
-#             'studentprofile': self.studentprofile, 
-#             'segment': 'profile',
-#             'title': "Profile"
-#         }
-#         return render(request, 'dashboard/users/profile.html', context)
-
-#     def post(self, request):
-#         form = UserProfileForm(request.POST, request.FILES, instance=self.userprofile)
-#         if form.is_valid():
-#             userprofile = form.save()
-#             userprofile.user.first_name = form.cleaned_data.get('first_name')
-#             userprofile.user.last_name = form.cleaned_data.get('last_name')
-#             userprofile.user.email = form.cleaned_data.get('email')
-#             userprofile.user.save()
-#             messages.success(request, 'Profile enregistré avec succes !')
-#         else:
-#             messages.error(request, form_validation_error(form))
-
-#         return redirect(reverse('accounts:profilePage'))
-
-
-# class TeacherCreationView(LoginRequiredMixin, CreateView):
-
-#     model = Teacher
-#     fields = '__all__'
-#     template_name = 'dashboard/shop/teacher_create.html'
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["teachers"] = Teacher.objects.all()
-#         context["n_shop"] = context["shops"].count()
-#         context["title"] = "Creation-Boutique"
-#         return context
-
-#     def get_success_url(self):
-#         return reverse_lazy('accounts:profilePage')
-
-
-
-# class TeacherUpdateView(LoginRequiredMixin, UpdateView):
-
-#     model = Teacher
-#     fields = '__all__'
-#     success_url = reverse_lazy('accounts:shopCreationPage')
-#     template_name = 'accounts/shop/shop_update.html'
-
-#     def get_success_url(self):
-#         return reverse_lazy('accounts:profileUpdatePage', args=(self.request.user.shop_user_related.pk,))
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["title"] = "Modification-Boutique"
-#         return context
-    
 
 
 def applogout(request):
     logout(request)
     return HttpResponseRedirect(settings.LOGIN_URL)
-    
+
 
 class AppRegisterView(FormView):
 
@@ -233,9 +189,6 @@ class AppRegisterView(FormView):
     success_url = reverse_lazy('accounts:loginPage')
 
     def form_valid(self, form):
-        user = form.save()
-        # if user is not None:
-        #     login(self.request, user)
         return super().form_valid(form)
 
     def get(self, *args, **kwargs):
@@ -247,7 +200,6 @@ class AppRegisterView(FormView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Registration"
         return context
-    
 
 
 # def export_grade_view(request):
@@ -258,7 +210,7 @@ class AppRegisterView(FormView):
 #     filename = "produit_" + today_date + ".xls"
 #     response['Content-Disposition'] = 'attachment; filename={}'.format(filename)
 #     return response
-    
+
 # def export_faculty_view(request):
 #     vente_excel = VenteExcel()
 #     dataset = vente_excel.export()
@@ -276,4 +228,3 @@ class AppRegisterView(FormView):
 #     filename = "client_" + today_date + ".xls"
 #     response['Content-Disposition'] = 'attachment; filename={}'.format(filename)
 #     return response
-

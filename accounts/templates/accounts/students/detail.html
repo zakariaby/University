@@ -1,0 +1,41 @@
+{% extends 'theme/base.html' %} {% load static %} {% block body_content %}
+
+<div class="w-full h-auto">
+  <h3 class="text-3xl text-center font-bold py-1">
+    {{ student.first_name }} {{ student.last_name }}
+  </h3>
+
+  <hr class="my-3" />
+
+  <div class="w-full flex items-start space-x-4">
+    <div class="w-full lg:w-1/3 md:w-1/2 flex flex-col items-center">
+      <img
+        src="{% static 'images/user.png' %}"
+        class="w-24 h-24 object-cover rounded-lg"
+        alt="{{student.first_name}}"
+      />
+
+      <div class="flex flex-col space-y-1 items-center">
+        {% if student.program == "tr" %}
+        <span>Telecom. & Reseaux</span>
+        {% else %}
+        <span>Multimedia</span>
+        {% endif %} {% if student.level == "first_year" %}
+        <span>1ere annee</span>
+        {% elif student.level == "second_year" %}
+        <span>2eme annee</span>
+        {% elif student.level == "third_year" %}
+        <span>Licence</span>
+        {% elif student.level == "fourth_year" %}
+        <span>Master 1</span>
+        {% else %}
+        <span>Master 2</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="w-full md:w-1/2 lg:w-2/3">hello</div>
+  </div>
+</div>
+
+{% endblock body_content %}

@@ -18,6 +18,7 @@ urlpatterns = [
     path('logout/', a_views.applogout, name='logoutPage'),
     # Student routes
     path('student/add/', a_views.StudentCreationView.as_view(), name="createStudentPage"),
+    path('student/detail/<int:pk>/', a_views.StudentDetailView.as_view(), name="detailStudentPage"),
     
     # Teacher routes
     path('teacher/add/', a_views.TeacherCreationView.as_view(), name="createTeacherPage"),
